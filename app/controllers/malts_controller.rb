@@ -22,9 +22,17 @@ class MaltsController < ApplicationController
   end
 
   def update
+    if @malt.update(malt_params)
+      redirect_to malts_path, notice: "Malta exitosamente actualizada."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    if @malt.destroy
+      redirect_to malts_path, notice: "Malta exitosamente eliminada."
+    end
   end
 
   private

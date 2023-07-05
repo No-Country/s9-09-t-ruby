@@ -1,5 +1,5 @@
-<%= simple_form_for @malt do |f| %>
-  <%= form_error_notification(@malt) %>
+<%= simple_form_for malt do |f| %>
+  <%= form_error_notification(malt) %>
 
   <%= f.input :name, label: "Nombre", class: "form-control", input_html: { autofocus: true } %>
   <%= f.input :description, label: "Descripcion", class: "form-control" %>
