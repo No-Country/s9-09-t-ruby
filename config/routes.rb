@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/supplies", to: "pages#supplies"
+
+  resources :malts, except: [:show]
 end

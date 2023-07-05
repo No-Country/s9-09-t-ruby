@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+for i in 1..20
+  Malt.create!(
+    name: Faker::Beer.malts + i.to_s,
+    description: Faker::Lorem.sentence,
+    extract: 82,
+    color: 7,
+    ph: 5.7
+  )
+end
+
+puts "Malts has been created."
