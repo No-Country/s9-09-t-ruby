@@ -1,0 +1,11 @@
+<%= simple_form_for @malt do |f| %>
+  <%= form_error_notification(@malt) %>
+
+  <%= f.input :name, label: "Nombre", class: "form-control", input_html: { autofocus: true } %>
+  <%= f.input :description, label: "Descripcion", class: "form-control" %>
+  <%= f.input :extract, label: "Extracto", class: "form-control" %>
+  <%= f.input :color, label: "Color (EBC)", class: "form-control" %>
+  <%= f.input :ph, label: "pH", class: "form-control" %>
+
+  <%= f.submit "Crear Malta", class: "btn btn-success" %>
+<% end %>

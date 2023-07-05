@@ -13,7 +13,9 @@
 #
 class Malt < ApplicationRecord
 
-validates :name, :description, :extract, :color, :ph, presence: true
-validates :name, uniqueness: { case_sensitive: false }
-validates :extract, :color, :ph, numericality: { greater_than: 0 }
+  validates :name, :description, :extract, :color, :ph, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :extract, :color, :ph, numericality: { greater_than: 0 }
+
+  scope :ordered, -> { order(id: :desc) }
 end
