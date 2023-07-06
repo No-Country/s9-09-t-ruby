@@ -4,7 +4,7 @@
     <div class="d-none d-md-block col"><%= malt.extract %></div>
     <div class="d-none d-md-block col"><%= malt.color %></div>
     <div class="d-none d-md-block col"><%= malt.ph %></div>
-    <div class="col d-flex align-items-center gap-2">
+    <div class="col d-flex align-items-center gap-3">
       <div>180 Kg</div>
       <%= button_to "#", class: "btn btn-success" do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -30,6 +30,23 @@
   </div>
   <div id="<%= dom_id(malt) %>_description" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
     <div class="accordion-body bg-white mb-2">
+      <table class="table d-md-none">
+        <thead>
+          <tr>
+            <th scope="col">EXTRACTO</th>
+            <th scope="col">COLOR</th>
+            <th scope="col">PH</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= malt.extract %></td>
+            <td><%= malt.color %></td>
+            <td><%= malt.ph %></td>
+          </tr>
+        </tbody>
+      </table>
+      <h6>DESCRIPCION</h6>
       <p class="text-muted">
         <%= malt.description %>
       </p>
