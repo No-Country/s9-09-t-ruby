@@ -2,6 +2,7 @@ class HopsController < ApplicationController
   before_action :set_hop, only: [ :edit, :update, :destroy ]
 
   def index
+    @hops = Hop.all.ordered
   end
 
   def new
