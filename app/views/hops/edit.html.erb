@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="header pt-4">
+    <h1>Editar lupulo</h1>
+  </div>
+
+  <%= turbo_frame_tag "remote_modal" do %>
+    <%= render "layouts/modal_content", title: "Editar lupulo" do %>
+      <%= render "form", hop: @hop %>
+    <% end %>
+  <% end %>
+</div>

@@ -25,9 +25,23 @@ class HopsController < ApplicationController
   end
 
   def update
+    if @hop.update(hop_params)
+      respond_to do |format|
+        format.html { redirect_to hops_path, notice: "Lupulo exitosamente actualizado." }
+        format.turbo_stream { flash.now[:notice] = "Lupulo exitosamente actualizado." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    if @hop.destroy
+      respond_to do |format|
+        format.html { redirect_to hops_path, notice: "Lupulo exitosamente eliminado." }
+        format.turbo_stream { flash.now[:notice] = "Lupulo exitosamente eliminado." }
+      end
+    end
   end
 
   private
