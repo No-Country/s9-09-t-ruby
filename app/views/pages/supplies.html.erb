@@ -3,12 +3,12 @@
     <h1>Materias primas</h1>
   </div>
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" data-controller="toggle" data-toggle-active-class="active">
     <li class="nav-item">
-      <%= link_to "Maltas", malts_path, class: "nav-link active", data: { turbo_frame: "supplies-content" } %>
+      <%= link_to "Maltas", malts_path, class: "nav-link active", data: { turbo_frame: "supplies-content", action: "click->toggle#toggleClass", toggle_target: "hide" } %>
     </li>
     <li class="nav-item">
-      <%= link_to "Lupulos", hops_path, class: "nav-link", data: { turbo_frame: "supplies-content" } %>
+      <%= link_to "Lupulos", hops_path, class: "nav-link", data: { turbo_frame: "supplies-content", action: "click->toggle#toggleClass", toggle_target: "hide" } %>
     </li>
     <li class="nav-item">
       <%= link_to "Levaduras", "#", class: "nav-link" %>
