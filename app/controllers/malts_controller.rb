@@ -12,7 +12,10 @@ class MaltsController < ApplicationController
   def create
     @malt = Malt.new(malt_params)
     if @malt.save
-      redirect_to malts_path, notice: "Malta exitosamente creada."
+      respond_to do |format|
+        format.html { redirect_to malts_path, notice: "Malta exitosamente creada." }
+        format.turbo_stream { flash.now[:notice] = "Malta exitosamente creada." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
