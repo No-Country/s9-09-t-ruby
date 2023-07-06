@@ -26,7 +26,10 @@ class MaltsController < ApplicationController
 
   def update
     if @malt.update(malt_params)
-      redirect_to malts_path, notice: "Malta exitosamente actualizada."
+      respond_to do |format|
+        format.html { redirect_to malts_path, notice: "Malta exitosamente actualizada." }
+        format.turbo_stream { flash.now[:notice] = "Malta exitosamente actualizada." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +37,10 @@ class MaltsController < ApplicationController
 
   def destroy
     if @malt.destroy
-      redirect_to malts_path, notice: "Malta exitosamente eliminada."
+      respond_to do |format|
+        format.html { redirect_to malts_path, notice: "Malta exitosamente eliminada." }
+        format.turbo_stream { flash.now[:notice] = "Malta exitosamente eliminada." }
+      end
     end
   end
 
