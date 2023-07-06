@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/supplies", to: "pages#supplies"
 
   resources :malts, except: [:show]
+  resources :hops, except: [:show]
 end
