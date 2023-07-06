@@ -5,15 +5,18 @@
 
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <%= link_to "Maltas", "#", class: "nav-link active" %>
+      <%= link_to "Maltas", malts_path, class: "nav-link active", data: { turbo_frame: "supplies-content" } %>
     </li>
     <li class="nav-item">
-      <%= link_to "Lupulos", "#", class: "nav-link" %>
+      <%= link_to "Lupulos", hops_path, class: "nav-link", data: { turbo_frame: "supplies-content" } %>
     </li>
     <li class="nav-item">
       <%= link_to "Levaduras", "#", class: "nav-link" %>
     </li>
-
   </ul>
+
+  <%= turbo_frame_tag "supplies-content" do %>
+    <%= render "malts/malts" %>
+  <% end %>
 
 </div>
