@@ -1,0 +1,11 @@
+<%= simple_form_for hop do |f| %>
+  <%= form_error_notification(hop) %>
+
+  <%= f.input :name, label: "Nombre", class: "form-control", input_html: { autofocus: true } %>
+  <%= f.input :description, label: "Descripcion", class: "form-control" %>
+  <%= f.input :aroma_profile, label: "Perfil de aromas", placeholder: "Separados con coma", class: "form-control" %>
+  <%= f.input :flavor_profile, label: "Perfil de sabores", placeholder: "Separados con coma", class: "form-control" %>
+  <%= f.input :alpha_acids, label: "Alfa acidos", class: "form-control" %>
+
+  <%= f.submit "Crear Malta", class: "btn btn-success" %>
+<% end %>

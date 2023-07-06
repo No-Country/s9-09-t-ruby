@@ -6,9 +6,19 @@ class HopsController < ApplicationController
   end
 
   def new
+    @hop = Hop.new
   end
 
   def create
+    @hop = Hop.new(hop_params)
+    if @hop.save
+      respond_to do |format|
+        format.html { redirect_to hops_path, notice: "Lupulo exitosamente creado." }
+        format.turbo_stream { flash.now[:notice] = "Lupulo exitosamente creado." }
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit

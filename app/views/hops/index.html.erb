@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header d-flex align-items-center justify-content-between pt-4">
     <h1>Lupulos</h1>
-    <%= button_to "Nuevo Lupulo", "#", class: "btn btn-success", method: :get, data: { turbo_frame: 'remote_modal' } %>
+    <%= button_to "Nuevo Lupulo", new_hop_path, class: "btn btn-success", method: :get, data: { turbo_frame: 'remote_modal' } %>
   </div>
 
   <div class="d-flex py-1 px-2 mb-2 border rounded shadow-sm text-bg-secondary fw-bold">
@@ -12,6 +12,8 @@
     <div class="col-1"></div>
   </div>
 
-  <%= render @hops %>
+  <%= turbo_frame_tag "hops" do %>
+    <%= render @hops %>
+  <% end %>
 
 </div>
