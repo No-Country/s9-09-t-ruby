@@ -12,7 +12,10 @@ class YeastsController < ApplicationController
   def create
     @yeast = Yeast.new(yeast_params)
     if @yeast.save
-      redirect_to yeasts_path, notice: "Levadura exitosamente creada."
+      respond_to do |format|
+        format.html { redirect_to yeasts_path, notice: "Levadura exitosamente creada." }
+        format.turbo_stream { flash.now[:notice] = "Levadura exitosamente creada." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
