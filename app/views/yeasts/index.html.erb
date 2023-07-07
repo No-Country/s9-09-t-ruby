@@ -1,0 +1,21 @@
+<div class="container">
+  <%= turbo_frame_tag "supplies-content" do %>
+    <div class="header d-flex align-items-center justify-content-between pt-4">
+      <h1>Levaduras</h1>
+      <%= button_to "Nueva levadura", new_yeast_path, class: "btn btn-success", method: :get, data: { turbo_frame: 'remote_modal' } %>
+    </div>
+
+    <div class="d-flex py-1 px-2 mb-2 border rounded shadow-sm text-bg-secondary fw-bold">
+      <div class="col">NOMBRE</div>
+      <div class="d-none d-md-block col">TIPO</div>
+      <div class="d-none d-md-block col">DOSIS</div>
+      <div class="col">DISPONIBLE</div>
+      <div class="col">ACCIONES</div>
+      <div class="col-1"></div>
+    </div>
+
+    <%= turbo_frame_tag "yeasts" do %>
+      <%= render @yeasts %>
+    <% end %>
+  <% end %>
+</div>

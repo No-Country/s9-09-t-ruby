@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   resources :malts, except: [:show]
   resources :hops, except: [:show]
+  resources :yeasts, except: [:show]
 end

@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_221755) do
     t.string "name"
     t.text "description"
     t.decimal "dosage", precision: 4, scale: 1
-    t.integer "type"
+    t.integer "yeast_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["type"], name: "index_yeasts_on_type"
+    t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
 end

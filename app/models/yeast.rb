@@ -6,12 +6,16 @@
 #  name        :string
 #  description :text
 #  dosage      :decimal(4, 1)
-#  type        :integer
+#  yeast_type  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 class Yeast < ApplicationRecord
-  validates :name, :description, :dosage, :type, presence: true
+  validates :name, :description, :dosage, :yeast_type, presence: true
   validates :name, uniqueness: { case_sensitive: false }
-  validates :dosage, numericality: { greater_than: 0 }  
+  validates :dosage, numericality: { greater_than: 0 }
+
+  enum yeast_type: { lager: 1, ale: 2 }
+
+  scope :ordered, -> { order(id: :desc) }
 end

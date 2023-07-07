@@ -4,10 +4,10 @@ class CreateYeasts < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.decimal :dosage, precision: 4, scale: 1
-      t.integer :type
+      t.integer :yeast_type
 
       t.timestamps
     end
-    add_index :yeasts, :type
+    add_index :yeasts, :yeast_type
   end
 end

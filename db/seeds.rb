@@ -29,3 +29,12 @@ for i in 1..20
 end
 
 puts "Hops has been created."
+
+for i in 1..20
+  Yeast.create!(
+    name: "#{Faker::Tea.variety} #{i.to_s}",
+    description: Faker::Lorem.sentence,
+    dosage: 125,
+    yeast_type: 1
+  )
+end
