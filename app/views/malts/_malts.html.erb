@@ -13,5 +13,5 @@
   <div class="col-1"></div>
 </div>
 <%= turbo_frame_tag "malts" do %>
-  <%= render Malt.all.ordered %>
+  <%= render Malt.all.includes(:inventory_item).ordered %>
 <% end %>

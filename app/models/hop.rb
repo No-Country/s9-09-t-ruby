@@ -17,4 +17,14 @@ class Hop < ApplicationRecord
   validates :alpha_acids, numericality: { greater_than: 0 }
 
   scope :ordered, -> { order(id: :desc) }
+
+  has_one :inventory_item, as: :inventoriable
+
+  after_create :create_inventory_item
+
+  private
+
+  def create_inventory_item
+    InventoryItem.create!( available: 0, inventoriable: self )
+  end
 end

@@ -2,7 +2,7 @@ class HopsController < ApplicationController
   before_action :set_hop, only: [ :edit, :update, :destroy ]
 
   def index
-    @hops = Hop.all.ordered
+    @hops = Hop.all.includes(:inventory_item).ordered
   end
 
   def new

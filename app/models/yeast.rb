@@ -18,4 +18,14 @@ class Yeast < ApplicationRecord
   enum yeast_type: { lager: 1, ale: 2 }
 
   scope :ordered, -> { order(id: :desc) }
+
+  has_one :inventory_item, as: :inventoriable
+
+  after_create :create_inventory_item
+
+  private
+
+  def create_inventory_item
+    InventoryItem.create!( available: 0, inventoriable: self )
+  end
 end

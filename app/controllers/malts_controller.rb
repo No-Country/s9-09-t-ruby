@@ -2,7 +2,8 @@ class MaltsController < ApplicationController
   before_action :set_malt, only: [ :edit, :update, :destroy ]
 
   def index
-    @malts = Malt.all.ordered
+    @malts = Malt.all.includes(:inventory_item).ordered
+    # @malts = Malt.all.ordered
   end
 
   def new

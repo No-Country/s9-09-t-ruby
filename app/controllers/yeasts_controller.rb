@@ -2,7 +2,7 @@ class YeastsController < ApplicationController
   before_action :set_yeast, only: [ :edit, :update, :destroy ]
 
   def index
-    @yeasts = Yeast.all.ordered
+    @yeasts = Yeast.all.includes(:inventory_item).ordered
   end
 
   def new
