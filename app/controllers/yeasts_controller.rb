@@ -25,9 +25,22 @@ class YeastsController < ApplicationController
   end
 
   def update
+    if @yeast.update(yeast_params)
+      respond_to do |format|
+        format.html { redirect_to yeasts_path, notice: "Levadura exitosamente editada." }
+        format.turbo_stream { flash.now[:notice] = "Levadura exitosamente editada." }
+      end
+    else
+    end
   end
 
   def destroy
+    if @yeast.destroy
+      respond_to do |format|
+        format.html { redirect_to yeasts_path, notice: "Levadura exitosamente eliminada." }
+        format.turbo_stream { flash.now[:notice] = "Levadura exitosamente eliminada." }
+      end
+    end
   end
 
   private
