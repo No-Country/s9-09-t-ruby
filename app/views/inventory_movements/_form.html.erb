@@ -1,0 +1,7 @@
+<%= simple_form_for inventory_movement, url: inventory_movements_path(inventory_item_id: inventory_item.id, movement_type: movement_type) do |f| %>
+
+  <%= f.input :movement_type, as: :hidden, value: movement_type %>
+  <%= f.input :quantity, placeholder: "Cantidad", class: "form-control", input_html: { autofocus: true } %>
+
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

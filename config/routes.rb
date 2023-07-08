@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :malts, except: [:show]
   resources :hops, except: [:show]
   resources :yeasts, except: [:show]
+  resources :inventory_movements, only: [:new, :create]
 end
