@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_07_191127) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_224858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_191127) do
     t.index ["inventoriable_type", "inventoriable_id"], name: "index_inventory_items_on_inventoriable"
   end
 
+  create_table "inventory_movements", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.integer "movement_type", null: false
+    t.bigint "inventory_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_item_id"], name: "index_inventory_movements_on_inventory_item_id"
+  end
+
   create_table "malts", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -53,4 +62,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_191127) do
     t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
+  add_foreign_key "inventory_movements", "inventory_items"
 end

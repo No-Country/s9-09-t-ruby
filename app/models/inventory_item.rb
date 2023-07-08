@@ -11,4 +11,5 @@
 #
 class InventoryItem < ApplicationRecord
   belongs_to :inventoriable, polymorphic: true
+  has_many :inventory_movements, dependent: :destroy
 end
