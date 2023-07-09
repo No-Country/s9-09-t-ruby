@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :hops, except: [:show]
   resources :yeasts, except: [:show]
   resources :inventory_movements, only: [:new, :create]
+  resources :recipes
 end
