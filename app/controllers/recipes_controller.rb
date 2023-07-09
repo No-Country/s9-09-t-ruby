@@ -15,7 +15,10 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to recipes_path, notice: "Receta exitosamente creada."
+      respond_to do |format|
+        format.html { redirect_to recipes_path, notice: "Receta exitosamente creada." }
+        format.turbo_stream { flash.now[:notice] = "Receta exitosamente creada." }
+      end
     else
       render :new, status: :unprocessable_entity
     end

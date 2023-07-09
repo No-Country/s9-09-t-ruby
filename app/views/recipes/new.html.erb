@@ -3,5 +3,7 @@
     <h1>Nueva receta</h1>
   </div>
 
-  <%= render "form", recipe: @recipe %>
+  <%= turbo_frame_tag @recipe do %>
+    <%= render "form", recipe: @recipe %>
+  <% end %>
 </div>

@@ -1,0 +1,3 @@
+<%= turbo_stream.update Recipe.new, "" %>
+<%= turbo_stream.prepend "recipes", @recipe %>
+<%= render_turbo_stream_flash_messages %>
