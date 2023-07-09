@@ -38,3 +38,16 @@ for i in 1..20
     yeast_type: 1
   )
 end
+
+puts "Yeasts has been created."
+
+for i in 1..5
+  Recipe.create!(
+    name: "#{Faker::Beer.name} #{i}",
+    description: Faker::Lorem.sentence,
+    style: Faker::Beer.style,
+    batch: 20
+  )
+end
+
+puts "Recipes has been created."

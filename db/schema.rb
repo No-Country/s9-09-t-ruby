@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_194720) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_09_200757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_194720) do
     t.decimal "alpha_acids", precision: 4, scale: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_items", force: :cascade do |t|
+    t.decimal "quantity", precision: 5, scale: 1
+    t.string "addable_type"
+    t.bigint "addable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addable_type", "addable_id"], name: "index_ingredient_items_on_addable"
   end
 
   create_table "inventory_items", force: :cascade do |t|
