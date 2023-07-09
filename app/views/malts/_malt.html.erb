@@ -6,7 +6,7 @@
       <div class="d-none d-md-block col-1"><%= malt.color %></div>
       <div class="d-none d-md-block col-1"><%= malt.ph %></div>
       <div class="col-8 col-md-3">
-        <%= turbo_frame_tag InventoryMovement.new, class: "d-flex align-items-center justify-content-between" do %>
+        <%= turbo_frame_tag nested_dom_id(malt.inventory_item, InventoryMovement.new), class: "d-flex align-items-center justify-content-between" do %>
           <div><%= malt.inventory_item.available %> kg</div>
           <%= link_to new_inventory_movement_path(inventory_item_id: malt.inventory_item.id, movement_type: :input), class: "btn btn-success" do %>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
