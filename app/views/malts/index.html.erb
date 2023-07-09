@@ -6,13 +6,13 @@
     </div>
 
     <div class="d-flex py-1 px-2 mb-2 border rounded shadow-sm text-bg-secondary fw-bold">
-      <div class="col">NOMBRE</div>
-      <div class="d-none d-md-block col">EXTRACTO</div>
-      <div class="d-none d-md-block col">COLOR (EBC)</div>
-      <div class="d-none d-md-block col">PH</div>
-      <div class="col">DISPONIBLE</div>
-      <div class="col">ACCIONES</div>
-      <div class="col-1"></div>
+      <div class="col-4 col-md-2">NOMBRE</div>
+      <div class="d-none d-md-block col-1">EXTRACTO</div>
+      <div class="d-none d-md-block col-1">COLOR</div>
+      <div class="d-none d-md-block col-1">PH</div>
+      <div class="col-8 col-md-3">DISPONIBLE</div>
+      <div class="d-none d-md-block col-3">ACCIONES</div>
+      <div class="d-none d-md-block col-1"></div>
     </div>
     <%= turbo_frame_tag "malts" do %>
       <%= render @malts %>
