@@ -29,6 +29,14 @@ class RecipesController < ApplicationController
   end
 
   def update
+    if @recipe.update(recipe_params)
+      respond_to do |format|
+        format.html { redirect_to recipes_path, notice: "Receta exitosamente actualizada." }
+        format.turbo_stream { flash.now[:notice] = "Receta exitosamente actualizada." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -37,6 +45,7 @@ class RecipesController < ApplicationController
   private
 
   def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 
   def recipe_params

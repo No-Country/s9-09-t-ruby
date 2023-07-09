@@ -1,33 +1,35 @@
-<div class="border rounded bg-white mb-2 shadow-sm p-4">
-  <div class="header d-flex align-items-center justify-content-between">
-    <strong>
-      <%= link_to recipe.name.upcase, recipe_path(recipe), class: "text-decoration-none" %>
-    </strong>
-    <div class="actions d-flex gap-2">
-      <%= button_to "Editar", edit_recipe_path(recipe), method: :get, class: "btn btn-success" %>
-      <%= button_to "Eliminar", recipe_path(recipe), method: :delete, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-danger" %>
+<%= turbo_frame_tag recipe do %>
+  <div class="border rounded bg-white mb-2 shadow-sm p-4">
+    <div class="header d-flex align-items-center justify-content-between">
+      <strong>
+        <%= link_to recipe.name.upcase, recipe_path(recipe), data: { turbo_frame: "_top" }, class: "text-decoration-none" %>
+      </strong>
+      <div class="actions d-flex gap-2">
+        <%= button_to "Editar", edit_recipe_path(recipe), method: :get, class: "btn btn-success" %>
+        <%= button_to "Eliminar", recipe_path(recipe), method: :delete, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-danger" %>
+      </div>
     </div>
-  </div>
 
-  <div class="description row mt-2 mx-2">
-    <div class="col pt-3">
-      <%= simple_format recipe.description, class: "text-muted" %>
+    <div class="description row mt-2 mx-2">
+      <div class="col pt-3">
+        <%= simple_format recipe.description, class: "text-muted" %>
+      </div>
     </div>
-  </div>
 
-  <div class="row mt-2">
-    <div class="col">
-      <strong>Estilo: </strong><%= recipe.style %>
+    <div class="row mt-2">
+      <div class="col">
+        <strong>Estilo: </strong><%= recipe.style %>
+      </div>
+      <div class="col">
+        <strong>Litros: </strong><%= recipe.batch %>
+      </div>
+      <div class="d-flex flex-wrap col">
+        <strong>Color: </strong><h5><span class="badge bg-warning text-black">18 SRM</span></h5>
+      </div>
+      <div class="col">
+        <strong>ABV: </strong>5.3 %
+      </div>
     </div>
-    <div class="col">
-      <strong>Litros: </strong><%= recipe.batch %>
-    </div>
-    <div class="d-flex flex-wrap col">
-      <strong>Color: </strong><h5><span class="badge bg-warning text-black">18 SRM</span></h5>
-    </div>
-    <div class="col">
-      <strong>ABV: </strong>5.3 %
-    </div>
-  </div>
 
-</div>
+  </div>
+<% end %>
