@@ -9,9 +9,17 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @recipe = Recipe.new
   end
 
   def create
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      redirect_to recipes_path, notice: "Receta exitosamente creada."
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def edit
