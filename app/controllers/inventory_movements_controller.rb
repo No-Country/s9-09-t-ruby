@@ -9,7 +9,10 @@ class InventoryMovementsController < ApplicationController
     @inventory_movement = @inventory_item.inventory_movements.build(inventory_movement_params)
     @inventory_movement.movement_type = @movement_type
     if @inventory_movement.save
-      redirect_to "/#{@inventory_item.inventoriable_type.pluralize.downcase}", notice: "Movimiento exitosamente creado."
+      respond_to do |format|
+        format.html { redirect_to "/#{@inventory_item.inventoriable_type.pluralize.downcase}", notice: "Movimiento exitosamente creado." }
+        format.turbo_stream { flash.now[:notice] = "Movimiento exitosamente creado." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
