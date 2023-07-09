@@ -40,6 +40,12 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    if @recipe.destroy
+      respond_to do |format|
+        format.html { edirect_to recipes_path, notice: "Receta exitosamente eliminada." }
+        format.turbo_stream { flash.now[:notice] = "Receta exitosamente eliminada." }
+      end
+    end
   end
 
   private
