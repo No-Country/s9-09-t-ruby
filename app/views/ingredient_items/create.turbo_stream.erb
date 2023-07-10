@@ -1,0 +1,5 @@
+<%= turbo_stream.update nested_dom_id(IngredientItem.new, @ingredient_item.addable_type), "" %>
+<%= turbo_stream.append @ingredient_item.addable_type.pluralize do %>
+  <%= render partial: "ingredient_items/#{@ingredient_item.addable_type.downcase}_ingredient_item", locals: { ingredient_item: @ingredient_item } %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

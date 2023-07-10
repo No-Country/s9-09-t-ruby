@@ -3,5 +3,7 @@
     <h1>Nuevo ingrediente</h1>
   </div>
 
-<%= render "form", recipe: @recipe, ingredient_item: @ingredient_item, addable_type: @addable_type %>
+<%= turbo_frame_tag nested_dom_id(@ingredient_item, @addable_type) do %>
+  <%= render "form", recipe: @recipe, ingredient_item: @ingredient_item, addable_type: @addable_type %>
+<% end %>
 </div>

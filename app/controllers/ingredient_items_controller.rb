@@ -9,7 +9,10 @@ class IngredientItemsController < ApplicationController
   def create
     @ingredient_item = @recipe.ingredient_items.build(ingredient_item_params)
     if @ingredient_item.save
-      redirect_to recipe_path(@recipe), notice: "Ingrediente exitosamente creado."
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe), notice: "Ingrediente exitosamente creado." }
+        format.turbo_stream { flash.now[:notice] = "Ingrediente exitosamente creado." }
+      end
     else
       render :new, status: :unprocessable_entity
     end

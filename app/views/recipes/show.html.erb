@@ -16,9 +16,12 @@
       <div class="col-2">%</div>
       <div class="col-2"></div>
     </div>
-    <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
+    <%= turbo_frame_tag "Malts" do %>
+      <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
+    <% end %>
+    <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Malt") %>
     <div class="recipe__add-ingredient">
-      <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), class: "btn btn-success text" %>
+      <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Malt") }, class: "btn btn-success text" %>
     </div>
   </section>
 
