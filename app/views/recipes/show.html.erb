@@ -17,6 +17,9 @@
       <div class="col-2"></div>
     </div>
     <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
+    <div class="recipe__add-ingredient">
+      <%= button_to "Agregar malta", "#", method: :get, class: "btn btn-success text" %>
+    </div>
   </section>
 
   <!-- Hops -->
@@ -34,6 +37,9 @@
     </div>
 
     <%= render partial: "ingredient_items/hop_ingredient_item", collection: @hops, as: :ingredient_item %>
+    <div class="recipe__add-ingredient">
+      <%= button_to "Agregar lupulo", "#", method: :get, class: "btn btn-success text" %>
+    </div>
   </section>
 
   <!-- Yeasts -->
@@ -49,5 +55,8 @@
       <div class="col-2"></div>
     </div>
     <%= render partial: "ingredient_items/yeast_ingredient_item", collection: @yeasts, as: :ingredient_item %>
+    <div class="recipe__add-ingredient">
+      <%= button_to "Agregar levadura", "#", method: :get, class: "btn btn-success text" %>
+    </div>
   </section>
 </div>

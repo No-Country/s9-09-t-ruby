@@ -9,7 +9,7 @@
   }
 
   &__title {
-    display: flex;
+    // display: flex;
     // border: var(--border);
     border-radius: 40px;
     margin-bottom: var(--space-xs);
@@ -17,6 +17,23 @@
     padding: var(--space-xxxs) var(--space-s);
     text-transform: uppercase;
     font-weight: bold;
-    background-color: var(--color-primary-rotate)
+    text-align: center;
+    background-color: var(--color-primary-rotate);
+  }
+
+  &__add-ingredient {
+    padding: var(--space-m);
+    border: var(--border);
+    border-style: dashed;
+    text-align: center;
+    margin-left: var(--space-xs);
+    margin-right: var(--space-xs);
+
+    &__text {
+      font-size: var(--font-size-l);
+      color: var(--color-text-header);
+      margin-bottom: var(--space-l);
+      font-weight: bold;
+    }
   }
 }
