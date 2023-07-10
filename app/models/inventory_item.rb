@@ -8,7 +8,6 @@
 #  inventoriable_id   :bigint
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  recipe_id          :bigint           not null
 #
 class InventoryItem < ApplicationRecord
   belongs_to :inventoriable, polymorphic: true

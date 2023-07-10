@@ -128,7 +128,7 @@ SimpleForm.setup do |config|
   end
 
   # vertical select input
-  config.wrappers :vertical_select, class: 'mb-3' do |b|
+  config.wrappers :vertical_select, class: '' do |b|
     b.use :html5
     b.optional :readonly
     b.use :label, class: 'form-label'
