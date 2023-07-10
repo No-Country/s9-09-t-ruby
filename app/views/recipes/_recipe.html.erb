@@ -2,7 +2,9 @@
   <div class="border rounded bg-white mb-2 shadow-sm p-4">
     <div class="header d-flex align-items-center justify-content-between">
       <strong>
-        <%= link_to recipe.name.upcase, recipe_path(recipe), data: { turbo_frame: "_top" }, class: "text-decoration-none" %>
+        <h5>
+          <%= link_to recipe.name.upcase, recipe_path(recipe), data: { turbo_frame: "_top" }, class: "text-decoration-none" %>
+        </h5>
       </strong>
       <div class="actions d-flex gap-2">
         <%= button_to "Editar", edit_recipe_path(recipe), method: :get, class: "btn btn-success" %>
