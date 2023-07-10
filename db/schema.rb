@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_200757) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_015206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_200757) do
     t.bigint "addable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "recipe_id", null: false
     t.index ["addable_type", "addable_id"], name: "index_ingredient_items_on_addable"
+    t.index ["recipe_id"], name: "index_ingredient_items_on_recipe_id"
   end
 
   create_table "inventory_items", force: :cascade do |t|
@@ -85,5 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_200757) do
     t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
+  add_foreign_key "ingredient_items", "recipes"
   add_foreign_key "inventory_movements", "inventory_items"
 end

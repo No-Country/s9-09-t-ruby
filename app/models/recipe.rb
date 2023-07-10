@@ -16,11 +16,11 @@
 #  updated_at  :datetime         not null
 #
 class Recipe < ApplicationRecord
-  has_many :ingredient_items, as: :addable, dependent: :destroy
-
   validates :name, :description, :style, :batch, presence: true
   validates :name, uniqueness: { case_sensitive: false }
   validates :batch, numericality: { greater_than: 0 }
+
+  has_many :ingredient_items, dependent: :destroy
 
   scope :ordered, -> { order(id: :desc) }
 end

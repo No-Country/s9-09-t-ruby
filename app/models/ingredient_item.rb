@@ -11,4 +11,5 @@
 #
 class IngredientItem < ApplicationRecord
   belongs_to :addable, polymorphic: true
+  belongs_to :recipe
 end

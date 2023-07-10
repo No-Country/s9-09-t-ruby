@@ -6,6 +6,9 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @malts = @recipe.ingredient_items.where(addable_type: "Malt").includes(:addable)
+    @hops = @recipe.ingredient_items.where(addable_type: "Hop").includes(:addable)
+    @yeasts = @recipe.ingredient_items.where(addable_type: "Yeast").includes(:addable)
   end
 
   def new

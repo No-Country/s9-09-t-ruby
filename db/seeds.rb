@@ -42,11 +42,25 @@ end
 puts "Yeasts has been created."
 
 for i in 1..5
-  Recipe.create!(
+  recipe = Recipe.create!(
     name: "#{Faker::Beer.name} #{i}",
     description: Faker::Lorem.sentence,
     style: Faker::Beer.style,
     batch: 20
+  )
+
+  recipe.ingredient_items.create!(
+    quantity: 5,
+    addable: Malt.last
+  )
+  recipe.ingredient_items.create!(
+    quantity: 20,
+    addable: Hop.last
+  )
+
+  recipe.ingredient_items.create!(
+    quantity: 21,
+    addable: Yeast.last
   )
 end
 

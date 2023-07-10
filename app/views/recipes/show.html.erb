@@ -1,0 +1,53 @@
+<div class="container recipe">
+  <div class="header pt-4">
+    <h2><%= @recipe.name %></h2>
+  </div>
+
+  <!-- Malts -->
+  <section>
+    <div class="recipe__title">
+      Maltas
+    </div>
+    <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
+      <div class="col-2">NOMBRE</div>
+      <div class="col-2">CANTIDAD</div>
+      <div class="col-2">EXTRACTO</div>
+      <div class="col-2">COLOR</div>
+      <div class="col-2">%</div>
+      <div class="col-2"></div>
+    </div>
+    <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
+  </section>
+
+  <!-- Hops -->
+  <section>
+    <div class="recipe__title">
+      Lupulos
+    </div>
+    <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
+      <div class="col-2">NOMBRE</div>
+      <div class="col-2">CANTIDAD</div>
+      <div class="col-2">AA</div>
+      <div class="col-2">IBUs</div>
+      <div class="col-2">%</div>
+      <div class="col-2"></div>
+    </div>
+
+    <%= render partial: "ingredient_items/hop_ingredient_item", collection: @hops, as: :ingredient_item %>
+  </section>
+
+  <!-- Yeasts -->
+  <section>
+    <div class="recipe__title">
+      Levaduras
+    </div>
+    <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
+      <div class="col-3">NOMBRE</div>
+      <div class="col-2">CANTIDAD</div>
+      <div class="col-3">ATENUACION</div>
+      <div class="col-2">TIPO</div>
+      <div class="col-2"></div>
+    </div>
+    <%= render partial: "ingredient_items/yeast_ingredient_item", collection: @yeasts, as: :ingredient_item %>
+  </section>
+</div>

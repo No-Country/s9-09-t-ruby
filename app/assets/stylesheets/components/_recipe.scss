@@ -1,0 +1,14 @@
+.recipe {
+
+  &__title {
+    display: flex;
+    // border: var(--border);
+    border-radius: 40px;
+    margin-bottom: var(--space-xs);
+    background-color: white;
+    padding: var(--space-xxxs) var(--space-s);
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: var(--color-primary)
+  }
+}

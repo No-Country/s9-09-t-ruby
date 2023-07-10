@@ -19,6 +19,7 @@ class Hop < ApplicationRecord
   scope :ordered, -> { order(id: :desc) }
 
   has_one :inventory_item, as: :inventoriable, dependent: :destroy
+  has_many :ingredient_items, as: :addable, dependent: :destroy
 
   after_create :create_inventory_item
 
