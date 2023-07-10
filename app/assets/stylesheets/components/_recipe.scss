@@ -1,5 +1,13 @@
 .recipe {
 
+  &__section {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: white;
+    padding: var(--space-m) var(--space-xxs);
+    margin-bottom: var(--space-xs)
+  }
+
   &__title {
     display: flex;
     // border: var(--border);
