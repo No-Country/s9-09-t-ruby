@@ -33,6 +33,12 @@ class IngredientItemsController < ApplicationController
   end
 
   def destroy
+    if @ingredient_item.destroy
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe), notice: "Ingrediente exitosamente eliminado." }
+        format.turbo_stream { flash.now[:notice] = "Ingrediente exitosamente eliminado." }
+      end
+    end
   end
 
   private
