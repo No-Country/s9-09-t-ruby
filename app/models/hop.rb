@@ -17,6 +17,7 @@ class Hop < ApplicationRecord
   validates :alpha_acids, numericality: { greater_than: 0 }
 
   scope :ordered, -> { order(id: :desc) }
+  scope :name_ordered, -> { order(name: :asc) }
 
   has_one :inventory_item, as: :inventoriable, dependent: :destroy
   has_many :ingredient_items, as: :addable, dependent: :destroy
