@@ -1,4 +1,4 @@
-<%= simple_form_for [recipe, ingredient_item], wrapper: :vertical_custom_form, html: { class: "d-flex align-items-center gap-2 mx-2 mb-2" } do |f| %>
+<%= simple_form_for [recipe, ingredient_item], url: recipe_ingredient_item_path(recipe, ingredient_item, addable_type: addable_type), wrapper: :vertical_custom_form, html: { class: "d-flex align-items-center gap-2 mx-2 mb-2" } do |f| %>
 
   <%= f.hidden_field :addable_type, value: addable_type %>
 

@@ -14,7 +14,7 @@ class IngredientItemsController < ApplicationController
         format.turbo_stream { flash.now[:notice] = "Ingrediente exitosamente creado." }
       end
     else
-      render :new, addable_type: @addable_type, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
