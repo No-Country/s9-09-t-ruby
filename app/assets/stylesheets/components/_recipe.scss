@@ -36,4 +36,18 @@
       font-weight: bold;
     }
   }
+
+  &__partial-result {
+    display: flex;
+    background-color: var(--color-dark);
+    text-transform: uppercase;
+    color: var(--color-white);
+    font-weight: bold;
+    border: var(--border);
+    margin-bottom: var(--space-xs);
+    margin-left: var(--space-xs);
+    margin-right: var(--space-xs);
+    padding: var(--space-xs) var(--space-xs);
+    box-shadow: var(--shadow-large)
+  }
 }
