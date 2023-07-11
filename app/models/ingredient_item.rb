@@ -28,6 +28,7 @@ class IngredientItem < ApplicationRecord
     OPTION_MODEL[model_name]
   end
 
+  # Matls
   def malt_sugar_extract
     quantity * addable.extract / 100
   end
@@ -38,5 +39,19 @@ class IngredientItem < ApplicationRecord
 
   def malt_mcu_color
     quantity * addable.color
+  end
+
+  # Hops
+
+  def ibus
+    ( quantity * 34 * addable.alpha_acids ) / ( recipe.batch * 10 * fc )
+  end
+
+  def fc
+    1
+  end
+
+  def hop_percentage
+    quantity * 100 / recipe.total_hop
   end
 end

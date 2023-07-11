@@ -12,24 +12,21 @@
       <div class="col-2">NOMBRE</div>
       <div class="col-2">CANTIDAD (kg)</div>
       <div class="col-2">EXTRACTO (kg)</div>
-      <div class="col-2">COLOR (SRM)</div>
+      <div class="col-2">COLOR</div>
       <div class="col-2">%</div>
       <div class="col-2"></div>
     </div>
+    <!-- Turbo frame to add malts -->
     <%= turbo_frame_tag "Malts" do %>
       <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
     <% end %>
+    <!-- Turbo frame to add new malt form -->
     <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Malt") %>
-
-    <div class="recipe__partial-result">
-      <div class="col-2">TOTAL</div>
-      <div class="col-2"><%= @recipe.total_malt %></div>
-      <div class="col-2"><%= @recipe.total_sugar_extract %></div>
-      <div class="col-2"><%= @recipe.srm.round(1) %></div>
-      <div class="col-2">100</div>
-      <div class="col-2"></div>
+    <!-- Malts result bar -->
+    <div id="malt_result">
+      <%= render "ingredient_items/malt_result", recipe: @recipe %>
     </div>
-
+    <!-- Button to add new matl -->
     <div class="recipe__add-ingredient">
       <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Malt") }, class: "btn btn-success text" %>
     </div>
@@ -48,11 +45,17 @@
       <div class="col-2">%</div>
       <div class="col-2"></div>
     </div>
-
+    <!-- Turbo frame to add hops -->
     <%= turbo_frame_tag "Hops" do %>
       <%= render partial: "ingredient_items/hop_ingredient_item", collection: @hops, as: :ingredient_item %>
     <% end %>
+    <!-- Turbo frame to add new hop form -->
     <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Hop") %>
+    <!-- Malts result bar -->
+    <div id="hop_result">
+      <%= render "ingredient_items/hop_result", recipe: @recipe %>
+    </div>
+    <!-- Button to add new hop -->
     <div class="recipe__add-ingredient">
       <%= link_to "Agregar lupulo", new_recipe_ingredient_item_path(@recipe, addable_type: 'Hop'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Hop") }, class: "btn btn-success text" %>
     </div>

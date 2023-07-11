@@ -24,6 +24,7 @@ class Recipe < ApplicationRecord
 
   scope :ordered, -> { order(id: :desc) }
 
+  # Malts
   def total_malt
     ingredient_items.where(addable_type: "Malt").sum(&:quantity)
   end
@@ -42,5 +43,15 @@ class Recipe < ApplicationRecord
 
   def srm
     1.5 * ( mcu ** 0.7 )
+  end
+
+  # Hops
+
+  def total_hop
+    ingredient_items.where(addable_type: "Hop").sum(&:quantity)
+  end
+
+  def total_ibus
+    ingredient_items.where(addable_type: "Hop").sum(&:ibus)
   end
 end
