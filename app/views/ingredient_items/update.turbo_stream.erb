@@ -1,10 +1,17 @@
-<%# Updates ingredient_items %>
-<%= turbo_stream.update @ingredient_item.addable_type.pluralize do %>
+<% if @ingredient_item.addable_type == "Yeast" %>
+  <%# Updates ingredient_item %>
+  <%= turbo_stream.update nested_dom_id(@ingredient_item, "Yeast") do %>
+  <%= render partial: "ingredient_items/yeast_ingredient_item", locals: { ingredient_item: @ingredient_item } %>
+  <% end %>
+<% else %>
+  <%# Updates ingredient_items %>
+  <%= turbo_stream.update @ingredient_item.addable_type.pluralize do %>
   <%= render partial: "ingredient_items/#{@ingredient_item.addable_type.downcase}_ingredient_item", collection: @recipe.ingredient_items.where(addable_type: @ingredient_item.addable_type).includes(:addable), as: :ingredient_item %>
-<% end %>
+  <% end %>
 
-<%# Updates result ingredient bar %>
-<%= turbo_stream.update "#{@ingredient_item.addable_type.downcase}_result", partial: "ingredient_items/#{@ingredient_item.addable_type.downcase}_result", locals: { recipe: @ingredient_item.recipe } %>
+  <%# Updates result ingredient bar %>
+  <%= turbo_stream.update "#{@ingredient_item.addable_type.downcase}_result", partial: "ingredient_items/#{@ingredient_item.addable_type.downcase}_result", locals: { recipe: @ingredient_item.recipe } %>
+<% end %>
 
 <%# Shows messages %>
 <%= render_turbo_stream_flash_messages %>
