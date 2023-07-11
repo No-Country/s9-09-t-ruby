@@ -23,4 +23,24 @@ class Recipe < ApplicationRecord
   has_many :ingredient_items, dependent: :destroy
 
   scope :ordered, -> { order(id: :desc) }
+
+  def total_malt
+    ingredient_items.where(addable_type: "Malt").sum(&:quantity)
+  end
+
+  def total_sugar_extract
+    ingredient_items.where(addable_type: "Malt").sum(&:malt_sugar_extract)
+  end
+
+  def mcu_b
+    ingredient_items.where(addable_type: "Malt").sum(&:malt_mcu_color) / batch
+  end
+
+  def mcu
+    ( mcu_b * 2.2 ) / 0.26
+  end
+
+  def srm
+    1.5 * ( mcu ** 0.7 )
+  end
 end

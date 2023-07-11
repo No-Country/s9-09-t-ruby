@@ -11,7 +11,7 @@
     <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
       <div class="col-2">NOMBRE</div>
       <div class="col-2">CANTIDAD (kg)</div>
-      <div class="col-2">EXTRACTO</div>
+      <div class="col-2">EXTRACTO (kg)</div>
       <div class="col-2">COLOR</div>
       <div class="col-2">%</div>
       <div class="col-2"></div>
@@ -20,6 +20,16 @@
       <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
     <% end %>
     <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Malt") %>
+
+    <div class="racipe__partial-result d-flex border rounded mb-2 mx-2 px-2 py-2  fw-bold">
+      <div class="col-2">TOTAL</div>
+      <div class="col-2"><%= @recipe.total_malt %></div>
+      <div class="col-2"><%= @recipe.total_sugar_extract %></div>
+      <div class="col-2"><%= @recipe.srm.round(1) %></div>
+      <div class="col-2">100</div>
+      <div class="col-2"></div>
+    </div>
+
     <div class="recipe__add-ingredient">
       <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Malt") }, class: "btn btn-success text" %>
     </div>

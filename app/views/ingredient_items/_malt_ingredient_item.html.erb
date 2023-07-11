@@ -7,13 +7,13 @@
       <%= ingredient_item.quantity %>
     </div>
     <div class="col-2">
-      <%= ingredient_item.addable.extract %> %
+      <%= ingredient_item.malt_sugar_extract %>
     </div>
     <div class="col-2">
       <%= ingredient_item.addable.color %>
     </div>
     <div class="col-2">
-      100
+      <%= ingredient_item.malt_percentage.round(1) %>
     </div>
     <div class="col-2 d-flex justify-content-end gap-2">
       <%= link_to edit_recipe_ingredient_item_path(@recipe, ingredient_item, addable_type: "Malt"), class: "btn btn-success" do %>
