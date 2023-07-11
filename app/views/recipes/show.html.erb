@@ -74,15 +74,15 @@
       <div class="col-2"></div>
     </div>
 
+    <!-- Turbo frame to add new yeast form -->
+    <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Yeast") %>
     <!-- Turbo frame to add yeasts -->
     <%= turbo_frame_tag "Yeasts" do %>
       <%= render partial: "ingredient_items/yeast_ingredient_item", collection: @yeasts, as: :ingredient_item %>
+      <!-- Button to add new yeast -->
+      <div class="recipe__add-ingredient recipe__add-ingredient--only-child">
+        <%= link_to "Agregar Levadura", new_recipe_ingredient_item_path(@recipe, addable_type: 'Yeast'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Yeast") }, class: "btn btn-success text" %>
+      </div>
     <% end %>
-    <!-- Turbo frame to add new yeast form -->
-    <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Yeast") %>
-    <!-- Button to add new yeast -->
-    <div class="recipe__add-ingredient">
-      <%= link_to "Agregar Levadura", new_recipe_ingredient_item_path(@recipe, addable_type: 'Yeast'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Yeast") }, class: "btn btn-success text" %>
-    </div>
   </section>
 </div>
