@@ -16,12 +16,12 @@ class IngredientItem < ApplicationRecord
 
   validates :quantity, presence: true
   validates :quantity, numericality: { greater_than: 0 }
-  validates :addable_id, uniqueness: { scope: :recipe_id, message: "Ya ha sigo agregado." }
+  validates :addable_id, uniqueness: { scope: [:recipe_id, :addable_type], message: "ya ha sigo agregado." }
 
   OPTION_MODEL = {
-    "Malt"  => Malt.all,
-    "Hop"   => Hop.all,
-    "Yeast" => Yeast.all
+    "Malt"  => Malt,
+    "Hop"   => Hop,
+    "Yeast" => Yeast
   }
 
   def self.set_model(model_name)
