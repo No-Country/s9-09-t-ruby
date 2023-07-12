@@ -28,13 +28,17 @@ class IngredientItem < ApplicationRecord
   }
 
   HOP_UTILIZATION_RANGE = {
-    "1" => 6,
-    "2" => 15,
-    "3" => 19,
-    "4" => 24,
-    "5" => 27,
-    "6" => 34
+    "1 - 9" => 6,
+    "10 - 19" => 15,
+    "20 - 29" => 19,
+    "30 - 44" => 24,
+    "45 - 59" => 27,
+    "mas de 60" => 34
   }
+
+  def self.boil_time_range
+    HOP_UTILIZATION_RANGE
+  end
 
   def self.set_model(model_name)
     OPTION_MODEL[model_name]

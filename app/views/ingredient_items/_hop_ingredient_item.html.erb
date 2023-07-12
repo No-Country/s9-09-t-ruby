@@ -9,11 +9,14 @@
     <div class="col-2">
       <%= ingredient_item.addable.alpha_acids %> %
     </div>
-    <div class="col-2">
+    <div class="col-1">
       <%= ingredient_item.ibus.round(1) %>
     </div>
-    <div class="col-2">
+    <div class="col-1">
       <%= ingredient_item.hop_percentage.round(1) %>
+    </div>
+    <div class="col-2">
+      <%= ingredient_item.boil_time %>
     </div>
     <div class="col-2 d-flex justify-content-end gap-2">
       <%= link_to edit_recipe_ingredient_item_path(@recipe, ingredient_item, addable_type: "Hop"), class: "btn btn-success" do %>
