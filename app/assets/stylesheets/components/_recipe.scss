@@ -58,4 +58,11 @@
     padding: var(--space-xs) var(--space-xs);
     box-shadow: var(--shadow-large)
   }
+
+  &__srm-color {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--space-xxxl);
+    text-align: center;
+  }
 }

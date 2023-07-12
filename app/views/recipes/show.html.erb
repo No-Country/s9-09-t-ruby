@@ -1,88 +1,140 @@
-<div class="container recipe">
+<div class="container-fluid recipe">
   <div class="header pt-4">
     <h2><%= @recipe.name %></h2>
   </div>
 
-  <!-- Malts -->
-  <section class="recipe__section">
-    <div class="recipe__title">
-      Maltas
-    </div>
-    <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
-      <div class="col-2">NOMBRE</div>
-      <div class="col-2">CANTIDAD (kg)</div>
-      <div class="col-2">EXTRACTO (kg)</div>
-      <div class="col-2">COLOR</div>
-      <div class="col-2">%</div>
-      <div class="col-2"></div>
-    </div>
-    <!-- Turbo frame to add malts -->
-    <%= turbo_frame_tag "Malts" do %>
-      <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
-    <% end %>
-    <!-- Turbo frame to add new malt form -->
-    <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Malt") %>
-    <!-- Malts result bar -->
-    <div id="malt_result">
-      <%= render "ingredient_items/malt_result", recipe: @recipe %>
-    </div>
-    <!-- Button to add new matl -->
-    <div class="recipe__add-ingredient">
-      <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Malt") }, class: "btn btn-success text" %>
-    </div>
-  </section>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col-12 col-md-9">
+      <!-- Malts -->
+      <section class="recipe__section">
+        <div class="recipe__title">
+          Maltas
+        </div>
+        <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
+          <div class="col-2">NOMBRE</div>
+          <div class="col-2">CANTIDAD (kg)</div>
+          <div class="col-2">EXTRACTO (kg)</div>
+          <div class="col-2">COLOR</div>
+          <div class="col-2">%</div>
+          <div class="col-2"></div>
+        </div>
+        <!-- Turbo frame to add malts -->
+        <%= turbo_frame_tag "Malts" do %>
+          <%= render partial: "ingredient_items/malt_ingredient_item", collection: @malts, as: :ingredient_item %>
+        <% end %>
+        <!-- Turbo frame to add new malt form -->
+        <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Malt") %>
+        <!-- Malts result bar -->
+        <div id="malt_result">
+          <%= render "ingredient_items/malt_result", recipe: @recipe %>
+        </div>
+        <!-- Button to add new matl -->
+        <div class="recipe__add-ingredient">
+          <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Malt") }, class: "btn btn-success text" %>
+        </div>
+      </section>
 
-  <!-- Hops -->
-  <section class="recipe__section">
-    <div class="recipe__title">
-      Lupulos
-    </div>
-    <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
-      <div class="col-2">NOMBRE</div>
-      <div class="col-2">CANTIDAD (gr)</div>
-      <div class="col-2">AA</div>
-      <div class="col-2">IBUs</div>
-      <div class="col-2">%</div>
-      <div class="col-2"></div>
-    </div>
-    <!-- Turbo frame to add hops -->
-    <%= turbo_frame_tag "Hops" do %>
-      <%= render partial: "ingredient_items/hop_ingredient_item", collection: @hops, as: :ingredient_item %>
-    <% end %>
-    <!-- Turbo frame to add new hop form -->
-    <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Hop") %>
-    <!-- Malts result bar -->
-    <div id="hop_result">
-      <%= render "ingredient_items/hop_result", recipe: @recipe %>
-    </div>
-    <!-- Button to add new hop -->
-    <div class="recipe__add-ingredient">
-      <%= link_to "Agregar lupulo", new_recipe_ingredient_item_path(@recipe, addable_type: 'Hop'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Hop") }, class: "btn btn-success text" %>
-    </div>
-  </section>
+      <!-- Hops -->
+      <section class="recipe__section">
+        <div class="recipe__title">
+          Lupulos
+        </div>
+        <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
+          <div class="col-2">NOMBRE</div>
+          <div class="col-2">CANTIDAD (gr)</div>
+          <div class="col-2">AA</div>
+          <div class="col-2">IBUs</div>
+          <div class="col-2">%</div>
+          <div class="col-2"></div>
+        </div>
+        <!-- Turbo frame to add hops -->
+        <%= turbo_frame_tag "Hops" do %>
+          <%= render partial: "ingredient_items/hop_ingredient_item", collection: @hops, as: :ingredient_item %>
+        <% end %>
+        <!-- Turbo frame to add new hop form -->
+        <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Hop") %>
+        <!-- Malts result bar -->
+        <div id="hop_result">
+          <%= render "ingredient_items/hop_result", recipe: @recipe %>
+        </div>
+        <!-- Button to add new hop -->
+        <div class="recipe__add-ingredient">
+          <%= link_to "Agregar lupulo", new_recipe_ingredient_item_path(@recipe, addable_type: 'Hop'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Hop") }, class: "btn btn-success text" %>
+        </div>
+      </section>
 
-  <!-- Yeasts -->
-  <section class="recipe__section">
-    <div class="recipe__title">
-      Levaduras
-    </div>
-    <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
-      <div class="col-3">NOMBRE</div>
-      <div class="col-2">CANTIDAD (gr)</div>
-      <div class="col-3">ATENUACION</div>
-      <div class="col-2">TIPO</div>
-      <div class="col-2"></div>
-    </div>
+      <!-- Yeasts -->
+      <section class="recipe__section">
+        <div class="recipe__title">
+          Levaduras
+        </div>
+        <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
+          <div class="col-3">NOMBRE</div>
+          <div class="col-2">CANTIDAD (gr)</div>
+          <div class="col-3">ATENUACION</div>
+          <div class="col-2">TIPO</div>
+          <div class="col-2"></div>
+        </div>
 
-    <!-- Turbo frame to add new yeast form -->
-    <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Yeast") %>
-    <!-- Turbo frame to add yeasts -->
-    <%= turbo_frame_tag "Yeasts" do %>
-      <%= render partial: "ingredient_items/yeast_ingredient_item", collection: @yeasts, as: :ingredient_item %>
-      <!-- Button to add new yeast -->
-      <div class="recipe__add-ingredient recipe__add-ingredient--only-child">
-        <%= link_to "Agregar Levadura", new_recipe_ingredient_item_path(@recipe, addable_type: 'Yeast'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Yeast") }, class: "btn btn-success text" %>
+        <!-- Turbo frame to add new yeast form -->
+        <%= turbo_frame_tag nested_dom_id(IngredientItem.new, "Yeast") %>
+        <!-- Turbo frame to add yeasts -->
+        <%= turbo_frame_tag "Yeasts" do %>
+          <%= render partial: "ingredient_items/yeast_ingredient_item", collection: @yeasts, as: :ingredient_item %>
+          <!-- Button to add new yeast -->
+          <div class="recipe__add-ingredient recipe__add-ingredient--only-child">
+            <%= link_to "Agregar Levadura", new_recipe_ingredient_item_path(@recipe, addable_type: 'Yeast'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Yeast") }, class: "btn btn-success text" %>
+          </div>
+        <% end %>
+      </section>
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="recipe__section">
+        <div class="recipe__title">
+          Caracteristicas
+        </div>
+        <div class="d-flex flex-column">
+          <strong>Color</strong>
+          <div class="recipe__srm-color srm-color__<%= @recipe.srm.floor.to_s %>">
+            <strong>
+              <%= @recipe.srm.floor%>
+            </strong>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">VOLUMEN (L)</th>
+                <td><%= @recipe.batch %></td>
+              </tr>
+              <tr>
+                <th scope="row">EXTRACTO REAL(kg)</th>
+                <td><%= @recipe.real_extract.round(1) %></td>
+              </tr>
+              <tr>
+                <th scope="row">OG</th>
+                <td><%= @recipe.computed_og %></td>
+              </tr>
+              <tr>
+                <th scope="row">FG</th>
+                <td>1012</td>
+              </tr>
+              <tr>
+                <th scope="row">ABV</th>
+                <td>5,6 %</td>
+              </tr>
+              <tr>
+                <th scope="row">IBU</th>
+                <td><%= @recipe.total_ibus.round(1) %></td>
+              </tr>
+              <tr>
+                <th scope="row">BALANCE</th>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    <% end %>
-  </section>
+    </div>
+  </div>
+
 </div>
