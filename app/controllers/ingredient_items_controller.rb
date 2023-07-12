@@ -56,6 +56,6 @@ class IngredientItemsController < ApplicationController
   end
 
   def ingredient_item_params
-    params.require(:ingredient_item).permit(:quantity, :addable_type, :addable_id)
+    params.require(:ingredient_item).permit(:quantity, :addable_type, :addable_id, :boil_time)
   end
 end

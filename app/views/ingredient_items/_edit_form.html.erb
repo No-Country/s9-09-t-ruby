@@ -4,7 +4,9 @@
 
   <%= f.input :addable_id, label: false, prompt: "Ingrediente", as: :select, collection: IngredientItem.set_model(addable_type).name_ordered, class: "form-select" %>
   <%= f.input :quantity, label: false, placeholder: "Cantidad", class: "form-control", input_html: { autofocus: true } %>
-
+  <% if addable_type == "Hop" %>
+    <%= f.input :boil_time, label: false, as: :select, collection: [ ["1 - 9", "1"], ["10 - 19", "2"], ["20 - 29", "3"], ["30 - 44", "4"], ["45 - 59", "5"], ["mas de 60", "6"] ], prompt: "Tiempo de coccion", class: "form-select" %>
+  <% end %>
   <%= button_tag type: 'submit', class: "btn btn-primary" do %>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>

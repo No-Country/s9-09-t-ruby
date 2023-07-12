@@ -9,6 +9,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  recipe_id    :bigint           not null
+#  boil_time    :string
 #
 class IngredientItem < ApplicationRecord
   belongs_to :addable, polymorphic: true
@@ -24,6 +25,15 @@ class IngredientItem < ApplicationRecord
     "Malt"  => Malt,
     "Hop"   => Hop,
     "Yeast" => Yeast
+  }
+
+  HOP_UTILIZATION_RANGE = {
+    "1" => 6,
+    "2" => 15,
+    "3" => 19,
+    "4" => 24,
+    "5" => 27,
+    "6" => 34
   }
 
   def self.set_model(model_name)
@@ -58,8 +68,12 @@ class IngredientItem < ApplicationRecord
 
   # Hops
 
+  def utilization_percentage
+    boil_time == "" ? 34 : HOP_UTILIZATION_RANGE[boil_time]
+  end
+
   def ibus
-    ( quantity * 34 * addable.alpha_acids ) / ( recipe.batch * 10 * fc )
+    ( quantity * utilization_percentage * addable.alpha_acids ) / ( recipe.batch * 10 * fc )
   end
 
   def fc
