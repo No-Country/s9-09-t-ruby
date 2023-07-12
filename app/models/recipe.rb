@@ -24,6 +24,7 @@ class Recipe < ApplicationRecord
 
   scope :ordered, -> { order(id: :desc) }
 
+
   def real_extract
     total_sugar_extract * 0.7
   end
@@ -33,7 +34,11 @@ class Recipe < ApplicationRecord
   end
 
   def computed_fg
-    computed_og * ingredient_items.where(addable_type: "Yeast").first.attenuation
+    ( ( computed_og - 1000 ) - ( ( computed_og - 1000 ) * ( ingredient_items.where(addable_type: "Yeast").first.addable.attenuation.to_f / 100) ) + 1000 ).round
+  end
+
+  def computed_abv
+    ( computed_og - computed_fg ) / 7.5
   end
 
   # Malts

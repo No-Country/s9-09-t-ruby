@@ -1,8 +1,9 @@
 <%= turbo_frame_tag yeast do %>
   <div class="accordion accordion-flush mb-2">
     <div class="accordion-item d-flex flex-wrap py-2 px-2 align-items-center border rounded shadow-sm bg-white">
-      <div class="col-4 col-md-3"><%= yeast.name %></div>
+      <div class="col-4 col-md-2"><%= yeast.name %></div>
       <div class="d-none d-md-block col-1"><%= yeast.yeast_type %></div>
+      <div class="d-none d-md-block col-1"><%= yeast.attenuation %></div>
       <div class="d-none d-md-block col-1"><%= yeast.dosage %></div>
       <div class="col-8 col-md-3">
         <%= turbo_frame_tag nested_dom_id(yeast.inventory_item, InventoryMovement.new), class: "d-flex align-items-center justify-content-between" do %>
@@ -37,12 +38,14 @@
             <tr>
               <th scope="col">TIPO</th>
               <th scope="col">DOSIS</th>
+              <th scope="col">ATENUACION (AA)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><%= yeast.yeast_type %></td>
               <td><%= yeast.dosage %></td>
+              <td><%= yeast.attenuation %></td>
             </tr>
           </tbody>
         </table>

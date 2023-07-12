@@ -35,7 +35,8 @@ for i in 1..20
     name: "#{Faker::Tea.variety} #{i.to_s}",
     description: Faker::Lorem.sentence,
     dosage: 125,
-    yeast_type: 1
+    yeast_type: 1,
+    attenuation: 75
   )
 end
 

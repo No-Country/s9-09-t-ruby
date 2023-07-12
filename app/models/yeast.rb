@@ -9,6 +9,7 @@
 #  yeast_type  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  attenuation :integer          not null
 #
 class Yeast < ApplicationRecord
   validates :name, :description, :dosage, :yeast_type, presence: true
