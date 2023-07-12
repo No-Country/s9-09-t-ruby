@@ -50,6 +50,6 @@ class YeastsController < ApplicationController
   end
 
   def yeast_params
-    params.require(:yeast).permit(:name, :description, :dosage, :yeast_type)
+    params.require(:yeast).permit(:name, :description, :dosage, :yeast_type, :attenuation)
   end
 end

@@ -4,6 +4,11 @@
   </div>
 
   <div class="row row-cols-1 row-cols-md-2">
+
+    <div id="beer-attributes" class="col-12 col-md-3">
+      <%= render "recipes/beer_attributes", recipe: @recipe %>
+    </div>
+
     <div class="col-12 col-md-9">
       <!-- Malts -->
       <section class="recipe__section">
@@ -71,7 +76,7 @@
         <div class="d-flex border rounded mb-2 mx-2 px-2 bg-success fw-bold">
           <div class="col-3">NOMBRE</div>
           <div class="col-2">CANTIDAD (gr)</div>
-          <div class="col-3">ATENUACION</div>
+          <div class="col-3">ATENUACION (%)</div>
           <div class="col-2">TIPO</div>
           <div class="col-2"></div>
         </div>
@@ -87,53 +92,6 @@
           </div>
         <% end %>
       </section>
-    </div>
-    <div class="col-12 col-md-3">
-      <div class="recipe__section">
-        <div class="recipe__title">
-          Caracteristicas
-        </div>
-        <div class="d-flex flex-column">
-          <strong>Color</strong>
-          <div class="recipe__srm-color srm-color__<%= @recipe.srm.round.to_s %>">
-            <strong>
-              <%= @recipe.srm.round%>
-            </strong>
-          </div>
-          <table class="table">
-            <tbody>
-              <tr>
-                <th scope="row">VOLUMEN (L)</th>
-                <td><%= @recipe.batch %></td>
-              </tr>
-              <tr>
-                <th scope="row">EXTRACTO REAL(kg)</th>
-                <td><%= @recipe.real_extract.round(1) %></td>
-              </tr>
-              <tr>
-                <th scope="row">OG</th>
-                <td><%= @recipe.computed_og %></td>
-              </tr>
-              <tr>
-                <th scope="row">FG</th>
-                <td><%= @recipe.computed_fg %></td>
-              </tr>
-              <tr>
-                <th scope="row">ABV</th>
-                <td><%= @recipe.computed_abv.round(1) %> %</td>
-              </tr>
-              <tr>
-                <th scope="row">IBU</th>
-                <td><%= @recipe.total_ibus.round(1) %></td>
-              </tr>
-              <tr>
-                <th scope="row">INICE BU:GU</th>
-                <td>3</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   </div>
 

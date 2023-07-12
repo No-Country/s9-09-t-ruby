@@ -5,6 +5,7 @@
   <%= f.input :description, label: "Descripcion", class: "form-control" %>
   <%= f.input :dosage, label: "Dosis gr/hl", class: "form-control" %>
   <%= f.input :yeast_type, as: :select, collection: Yeast.yeast_types, value_method: -> (r) { r[0] } %>
+  <%= f.input :attenuation, label: "Atenuacion (%)", class: "form-control" %>
 
   <%= f.submit "Crear Malta", class: "btn btn-success" %>
 <% end %>

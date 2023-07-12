@@ -26,15 +26,15 @@ class Recipe < ApplicationRecord
 
 
   def real_extract
-    total_sugar_extract * 0.7
+    has_one_malt? ? total_sugar_extract * 0.7 : 0
   end
 
   def computed_og
-    1000 + ( ( 4 * (real_extract * 1000) ) / ( 10 * batch ) ).round
+    has_one_yeast? ? 1000 + ( ( 4 * (real_extract * 1000) ) / ( 10 * batch ) ).round : 0
   end
 
   def computed_fg
-    ( ( computed_og - 1000 ) - ( ( computed_og - 1000 ) * ( ingredient_items.where(addable_type: "Yeast").first.addable.attenuation.to_f / 100) ) + 1000 ).round
+    has_one_yeast? ? ( ( computed_og - 1000 ) - ( ( computed_og - 1000 ) * ( ingredient_items.where(addable_type: "Yeast").first.addable.attenuation.to_f / 100) ) + 1000 ).round : 0
   end
 
   def computed_abv
@@ -43,34 +43,45 @@ class Recipe < ApplicationRecord
 
   # Malts
   def total_malt
-    ingredient_items.where(addable_type: "Malt").sum(&:quantity)
+    has_one_malt? ? ingredient_items.where(addable_type: "Malt").sum(&:quantity) : 0
   end
 
   def total_sugar_extract
-    ingredient_items.where(addable_type: "Malt").sum(&:malt_sugar_extract)
+    has_one_malt? ? ingredient_items.where(addable_type: "Malt").sum(&:malt_sugar_extract) : 0
   end
 
   def mcu_b
-    ingredient_items.where(addable_type: "Malt").sum(&:malt_mcu_color) / batch
+    has_one_malt? ? ingredient_items.where(addable_type: "Malt").sum(&:malt_mcu_color) / batch : 0
   end
 
   def mcu
-    ( mcu_b * 2.2 ) / 0.26
+    has_one_malt? ? ( mcu_b * 2.2 ) / 0.26 : 0
   end
 
   def srm
-    1.5 * ( mcu ** 0.7 )
+    has_one_malt? ? 1.5 * ( mcu ** 0.7 ) : 0
   end
 
   # Hops
 
   def total_hop
-    ingredient_items.where(addable_type: "Hop").sum(&:quantity)
+    has_one_hop? ? ingredient_items.where(addable_type: "Hop").sum(&:quantity) : 0
   end
 
   def total_ibus
-    ingredient_items.where(addable_type: "Hop").sum(&:ibus)
+    has_one_hop? ? ingredient_items.where(addable_type: "Hop").sum(&:ibus) : 0
   end
 
-  # Yeasts
+  def has_one_malt?
+    ingredient_items.where(addable_type: "Malt").count > 0
+  end
+
+  def has_one_hop?
+    ingredient_items.where(addable_type: "Hop").count > 0
+  end
+
+  def has_one_yeast?
+    ingredient_items.where(addable_type: "Yeast").count > 0
+  end
+
 end

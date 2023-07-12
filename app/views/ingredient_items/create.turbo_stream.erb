@@ -16,5 +16,10 @@
   <%= turbo_stream.update "#{@ingredient_item.addable_type.downcase}_result", partial: "ingredient_items/#{@ingredient_item.addable_type.downcase}_result", locals: { recipe: @ingredient_item.recipe } %>
 <% end %>
 
+<%# Updates beer attributes %>
+<%= turbo_stream.update "beer-attributes" do %>
+  <%= render "recipes/beer_attributes", recipe: @recipe %>
+<% end %>
+
 <%# Shows messages %>
 <%= render_turbo_stream_flash_messages %>
