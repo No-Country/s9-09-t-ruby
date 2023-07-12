@@ -26,10 +26,10 @@
         <strong>Litros: </strong><%= recipe.batch %>
       </div>
       <div class="d-flex flex-wrap gap-2 col">
-        <strong>Color: </strong><h5><span class="badge bg-warning text-black">18 SRM</span></h5>
+        <strong>Color: </strong><h5><span class="badge text-black srm-color__<%= recipe.srm.round.to_s %>"><%= recipe.srm.round %></span></h5>
       </div>
       <div class="col">
-        <strong>ABV: </strong>5.3 %
+        <strong>ABV: </strong><%= recipe.computed_abv.round(1) %> %
       </div>
     </div>
 
