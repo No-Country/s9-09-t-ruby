@@ -6,13 +6,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "Mis insumos", supplies_path, class: "nav-link active" %>
         </li>
         <li class="nav-item">
           <%= link_to "Mis recetas", recipes_path, class: "nav-link" %>
         </li>
+        <% end %>
       </ul>
+      <% if user_signed_in? %>
+        <div class="text-white me-2">
+          <strong>
+            <%= current_user.email %>
+          </strong>
+        </div>
+        <%= button_to "Salir", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Quiere cerrar sesion?" }, class: "btn btn-outline-warning" %>
+      <% else %>
+        <%= button_to "Ingresar", new_user_session_path, method: :get, class: "btn btn-warning" %>
+      <% end %>
     </div>
   </div>
 </nav>
