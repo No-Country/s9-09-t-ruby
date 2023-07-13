@@ -2,15 +2,15 @@ class YeastsController < ApplicationController
   before_action :set_yeast, only: [ :edit, :update, :destroy ]
 
   def index
-    @yeasts = Yeast.all.includes(:inventory_item).ordered
+    @yeasts = current_user.yeasts.includes(:inventory_item).ordered
   end
 
   def new
-    @yeast = Yeast.new
+    @yeast = current_user.yeasts.new
   end
 
   def create
-    @yeast = Yeast.new(yeast_params)
+    @yeast = current_user.yeasts.new(yeast_params)
     if @yeast.save
       respond_to do |format|
         format.html { redirect_to yeasts_path, notice: "Levadura exitosamente creada." }
@@ -46,7 +46,7 @@ class YeastsController < ApplicationController
   private
 
   def set_yeast
-    @yeast = Yeast.find(params[:id])
+    @yeast = current_user.yeasts.find(params[:id])
   end
 
   def yeast_params

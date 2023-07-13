@@ -85,39 +85,51 @@ end
 
 puts "Hops has been created."
 
-for i in 1..20
-  Yeast.create!(
-    name: "#{Faker::Tea.variety} #{i.to_s}",
-    description: Faker::Lorem.sentence,
-    dosage: 125,
-    yeast_type: 1,
-    attenuation: 75
+yeast_name = ['SafAle™ S-04', 'SafAle™ BE‑134', 'SafAle™ T-58', 'SafLager™ S‑189', 'SafLager™ S-23']
+yeast_description = [
+  'Cepa ale inglesa seleccionada por su rápida capacidad fermentativa y por formar un sedimento compacto al final de la fermentación, ayudando a mejorar la claridad de la cerveza. Recomendada para la producción de un amplio rango de ales y especialmente adaptadas para acondicionamiento en barriles y fermentación en tanques cilíndrico - cónicos.',
+  'SafAle™ BE-134 es una Saccharomyces cerevisiae var. diastaticus y se caracteriza particularmente por su alta atenuación. Esta cepa de levadura típica se recomienda para cervezas estilo Saison belga. Produce aromas frutales, con carácter especiado (POF +), con orientación hacia el clavo. Esta cepa produce cervezas refrescantes y de muy alta “drinkability”.',
+  'Cepa de especialidad, seleccionada por el desarrollo de aromas y sabores a ésteres aromas especiados, a veces apimentado y. Levadura con buena sedimentación: no forma agregados y en cambio sí produce una turbidez pulverulenta cuando se resuspende en la cerveza.',
+  'Originaria de la cervecería Hürlimann en Suiza. El perfil de atenuación de esta cepa lager permite producir cervezas con sabores bastante neutros, de alta “drinkability”.',
+  'Esta cepa de fermentación baja es originaria del instituto VLB de Berlín, Alemania, y es recomendada para la producción de lagers frutales, con elevados ésteres. Su bajo perfil de atenuación produce cervezas con buena persistencia en el paladar.'
+]
+yeast_dosage = [70, 70, 70, 100, 100]
+yeast_type = [2, 2, 2, 1, 1]
+yeast_attenuation = [75, 90, 70, 84, 82]
+
+for i in 0..4
+  user.yeasts.create!(
+    name: yeast_name[i],
+    description: yeast_description[i],
+    dosage: yeast_dosage[i],
+    yeast_type: yeast_type[i],
+    attenuation: yeast_attenuation[i]
   )
 end
 
 puts "Yeasts has been created."
 
-for i in 1..5
-  recipe = Recipe.create!(
-    name: "#{Faker::Beer.name} #{i}",
-    description: Faker::Lorem.sentence,
-    style: Faker::Beer.style,
-    batch: 20
-  )
-
-  recipe.ingredient_items.create!(
-    quantity: 30,
-    addable: Malt.last
-  )
-  recipe.ingredient_items.create!(
-    quantity: 30,
-    addable: Hop.last
-  )
-
-  recipe.ingredient_items.create!(
-    quantity: 30,
-    addable: Yeast.last
-  )
-end
+# for i in 1..5
+#   recipe = Recipe.create!(
+#     name: "#{Faker::Beer.name} #{i}",
+#     description: Faker::Lorem.sentence,
+#     style: Faker::Beer.style,
+#     batch: 20
+#   )
+#
+#   recipe.ingredient_items.create!(
+#     quantity: 30,
+#     addable: Malt.last
+#   )
+#   recipe.ingredient_items.create!(
+#     quantity: 30,
+#     addable: Hop.last
+#   )
+#
+#   recipe.ingredient_items.create!(
+#     quantity: 30,
+#     addable: Yeast.last
+#   )
+# end
 
 puts "Recipes has been created."

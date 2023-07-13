@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_164117) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_170707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_164117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "attenuation", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_yeasts_on_user_id"
     t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
@@ -109,4 +111,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_164117) do
   add_foreign_key "ingredient_items", "recipes"
   add_foreign_key "inventory_movements", "inventory_items"
   add_foreign_key "malts", "users"
+  add_foreign_key "yeasts", "users"
 end

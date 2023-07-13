@@ -12,6 +12,10 @@
 #  attenuation :integer          not null
 #
 class Yeast < ApplicationRecord
+  belongs_to :user
+  has_one :inventory_item, as: :inventoriable, dependent: :destroy
+  has_many :ingredient_items, as: :addable, dependent: :destroy
+
   validates :name, :description, :dosage, :yeast_type, presence: true
   validates :name, uniqueness: { case_sensitive: false }
   validates :dosage, numericality: { greater_than: 0 }
@@ -21,8 +25,6 @@ class Yeast < ApplicationRecord
   scope :ordered, -> { order(id: :desc) }
   scope :name_ordered, -> { order(name: :asc) }
 
-  has_one :inventory_item, as: :inventoriable, dependent: :destroy
-  has_many :ingredient_items, as: :addable, dependent: :destroy
 
   after_create :create_inventory_item
 
