@@ -77,11 +77,15 @@ class IngredientItem < ApplicationRecord
   end
 
   def ibus
-    ( quantity * utilization_percentage * addable.alpha_acids ) / ( recipe.batch * 10 * fc )
+    ( quantity * utilization_percentage * addable.alpha_acids ) / ( recipe.batch.to_f * 10 * fc )
   end
 
   def fc
-    1
+    recipe.computed_og < 1050 ? 1 : ( (( ev.round - 1050 ).to_f / 1000).to_f / 0.2 ) + 1
+  end
+
+  def ev
+    ( ( (( recipe.computed_og.to_f / 1000 ) - 1) * ( recipe.batch.to_f / (recipe.batch + 4 ) ) ) + 1 ) * 1000
   end
 
   def hop_percentage

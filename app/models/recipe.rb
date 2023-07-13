@@ -29,6 +29,9 @@ class Recipe < ApplicationRecord
     has_one_malt? ? total_sugar_extract * 0.7 : 0
   end
 
+  def pre_boil_density
+  end
+
   def computed_og
     has_one_yeast? ? 1000 + ( ( 4 * (real_extract * 1000) ) / ( 10 * batch ) ).round : 0
   end
