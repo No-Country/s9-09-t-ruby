@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :malts, dependent: :destroy
   has_many :hops, dependent: :destroy
   has_many :yeasts, dependent: :destroy
+  has_many :recipes, dependent: :destroy
 end

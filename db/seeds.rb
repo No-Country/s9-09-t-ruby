@@ -131,5 +131,5 @@ puts "Yeasts has been created."
 #     addable: Yeast.last
 #   )
 # end
-
-puts "Recipes has been created."
+#
+# puts "Recipes has been created."

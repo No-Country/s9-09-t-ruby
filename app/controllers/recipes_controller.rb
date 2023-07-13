@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @recipes = Recipe.all.ordered
+    @recipes = current_user.recipes.ordered
   end
 
   def show
@@ -12,11 +12,11 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.new
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
       respond_to do |format|
         format.html { redirect_to recipes_path, notice: "Receta exitosamente creada." }
@@ -54,7 +54,7 @@ class RecipesController < ApplicationController
   private
 
   def set_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
   end
 
   def recipe_params
