@@ -2,7 +2,7 @@
 
   <%= f.hidden_field :addable_type, value: addable_type %>
 
-  <%= f.input :addable_id, label: false, prompt: "Ingrediente", as: :select, collection: IngredientItem.set_model(addable_type).name_ordered, class: "form-select" %>
+  <%= f.input :addable_id, label: false, prompt: "Ingrediente", as: :select, collection: IngredientItem.set_model(addable_type).where(user_id: current_user.id).name_ordered, class: "form-select" %>
   <%= f.input :quantity, label: false, placeholder: "Cantidad", class: "form-control", input_html: { autofocus: true } %>
   <% if addable_type == "Hop" %>
     <%= f.input :boil_time, label: false, as: :select, collection: IngredientItem.boil_time_range, value_method: -> (r) { r[0] }, prompt: "Tiempo de coccion", class: "form-select" %>
