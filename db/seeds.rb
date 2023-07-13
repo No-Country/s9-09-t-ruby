@@ -32,20 +32,54 @@ for i in 0..4
     name: malt_name[i],
     description: malt_description[i],
     extract: malt_extract[i],
-    color: malt_color[0],
-    ph: malt_ph[0]
+    color: malt_color[i],
+    ph: malt_ph[i]
   )
 end
 
 puts "Malts has been created."
 
-for i in 1..20
-  Hop.create!(
-    name: "#{Faker::Tea.variety} #{i.to_s}",
-    description: Faker::Lorem.sentence,
-    aroma_profile: Faker::Tea.type,
-    flavor_profile: Faker::Food.allergen,
-    alpha_acids: 5.1
+hop_name = [
+  'Cascade',
+  'East Kent Golding',
+  'GR Hallertau Tradition',
+  'Magnum',
+  'Sterling'
+]
+
+hop_description = [
+  'Lúpulo Cascade es una explosión de sabor y aroma de pomelo picante con altos niveles de aceite mirceno. Presenta un agradable y equilibrado amargor, pero se utiliza idealmente en las adiciones tardías del lúpulo para maximizar ese sabor y aroma. El cítrico está respaldado por algunos tonos florales suaves y especiados que completan el perfil del lúpulo.',
+  'Desarrollado a partir de Wild Canterbury Whitebine y lanzado al mercado a finales de 1700, East Kent Golding es la variedad inglesa por excelencia. Su aplicación ideal es en el Dry-Hopping o post-fermentación ',
+  'Descendiente del Hallertauer Mittelfruh, este lúpulo tiene un alto rendimiento. Se caracteriza por su aroma suave y dulce a uva y ciruela, con notas herbales. Es ideal para elaborar lagers alemanas.',
+  'agnum es un lúpulo con un excelente amargor, aroma agradable y un carácter frutal. Es un aroma muy débil, lo que hace un lúpulo muy bueno para impartir un fuerte pero limpio carácter amargo. Los cerveceros lo utilizan para cervezas Indian Pale Ale (IPA). También es ideal para dar un empuje de amargor en estilos que lo requieran.',
+  'Hijo del Saaz y Cascade con un poco de polinización abierta de variedades alemanas. El parentesco de Sterling es evidente en su función doble propósito. Las características picantes del Saaz juegan bien con los cítricos brillantes del Cascade. Si bien es utilizado principalmente como un lúpulo de aroma, es lo suficientemente versátil para trabajar en una amplia gama de estilos y usos.'
+]
+
+hop_aroma = [
+  'Floral, Frutal a Uva, Pino',
+  'Lavanda, Miel, Limon, Pomelo',
+  'Herbal, Floral',
+  'Frutal',
+  'Herbal, Picante, Floral'
+]
+
+hop_flavor = [
+  'Fresa, Agrios, Mora, Lychee, Caramelo',
+  'Agrios, Alcachofa, Picante, Woodruff, Pan de jengibre',
+  'Albaricoque, Durazno, Cassis, Agrios, Naranja',
+  'Manzana, Limón, Menta, Chocolate, Pimientos verdes',
+  'Frutas verdes'
+]
+
+hop_alpha_acids = [6.3, 5.5, 5.7, 13.5, 8]
+
+for i in 0..4
+  user.hops.create!(
+    name: hop_name[i],
+    description: hop_description[i],
+    aroma_profile: hop_aroma[i],
+    flavor_profile: hop_flavor[i],
+    alpha_acids: hop_alpha_acids[i]
   )
 end
 

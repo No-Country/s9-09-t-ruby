@@ -2,15 +2,15 @@ class HopsController < ApplicationController
   before_action :set_hop, only: [ :edit, :update, :destroy ]
 
   def index
-    @hops = Hop.all.includes(:inventory_item).ordered
+    @hops = current_user.hops.includes(:inventory_item).ordered
   end
 
   def new
-    @hop = Hop.new
+    @hop = current_user.hops.new
   end
 
   def create
-    @hop = Hop.new(hop_params)
+    @hop = current_user.hops.new(hop_params)
     if @hop.save
       respond_to do |format|
         format.html { redirect_to hops_path, notice: "Lupulo exitosamente creado." }
@@ -47,7 +47,7 @@ class HopsController < ApplicationController
   private
 
   def set_hop
-    @hop = Hop.find(params[:id])
+    @hop = current_user.hops.find(params[:id])
   end
 
   def hop_params

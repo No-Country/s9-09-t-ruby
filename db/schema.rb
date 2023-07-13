@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_160658) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_164117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_160658) do
     t.decimal "alpha_acids", precision: 4, scale: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_hops_on_user_id"
   end
 
   create_table "ingredient_items", force: :cascade do |t|
@@ -103,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_160658) do
     t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
+  add_foreign_key "hops", "users"
   add_foreign_key "ingredient_items", "recipes"
   add_foreign_key "inventory_movements", "inventory_items"
   add_foreign_key "malts", "users"

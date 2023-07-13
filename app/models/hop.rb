@@ -12,15 +12,16 @@
 #  updated_at     :datetime         not null
 #
 class Hop < ApplicationRecord
+  belongs_to :user
+  has_one :inventory_item, as: :inventoriable, dependent: :destroy
+  has_many :ingredient_items, as: :addable, dependent: :destroy
+  
   validates :name, :description, :aroma_profile, :flavor_profile, :alpha_acids, presence: true
   validates :name, uniqueness: { case_sensitive: false }
   validates :alpha_acids, numericality: { greater_than: 0 }
 
   scope :ordered, -> { order(id: :desc) }
   scope :name_ordered, -> { order(name: :asc) }
-
-  has_one :inventory_item, as: :inventoriable, dependent: :destroy
-  has_many :ingredient_items, as: :addable, dependent: :destroy
 
   after_create :create_inventory_item
 
