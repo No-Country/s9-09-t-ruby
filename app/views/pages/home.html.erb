@@ -1,1 +1,19 @@
-Home Page!!
+<div class="main">
+  <!-- Main section -->
+  <section>
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <%= image_tag 'undraw_coffee_with_friends_3cbj', class: "d-block mx-lg-auto img-fluid", size: "500x700", loading: "lazy" %>
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">Desena y fabrica tu cerveza artezanal </h1>
+          <p class="lead">Manten el registro de todos tus insumos, recetas de cerveza y dale trazabilidad a tus lotes de cerveza.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <%= button_to "Registrarme ya!", new_user_registration_path, method: :get, class: "btn btn-danger fs-4" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
