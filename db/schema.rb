@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_172945) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_163121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_172945) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["inventory_item_id"], name: "index_inventory_movements_on_inventory_item_id"
+  end
+
+  create_table "lots", force: :cascade do |t|
+    t.string "code", null: false
+    t.integer "batch", null: false
+    t.string "status"
+    t.bigint "recipe_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_lots_on_recipe_id"
+    t.index ["user_id"], name: "index_lots_on_user_id"
   end
 
   create_table "malts", force: :cascade do |t|
@@ -112,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_172945) do
   add_foreign_key "hops", "users"
   add_foreign_key "ingredient_items", "recipes"
   add_foreign_key "inventory_movements", "inventory_items"
+  add_foreign_key "lots", "recipes"
+  add_foreign_key "lots", "users"
   add_foreign_key "malts", "users"
   add_foreign_key "recipes", "users"
   add_foreign_key "yeasts", "users"

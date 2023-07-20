@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  attenuation :integer          not null
+#  user_id     :bigint           not null
 #
 class Yeast < ApplicationRecord
   belongs_to :user

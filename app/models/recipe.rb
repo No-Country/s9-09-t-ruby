@@ -14,6 +14,7 @@
 #  ibus        :decimal(4, 1)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :bigint           not null
 #
 class Recipe < ApplicationRecord
   belongs_to :user
