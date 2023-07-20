@@ -1,0 +1,8 @@
+<%= simple_form_for lot do |f| %>
+  <%= form_error_notification(lot) %>
+
+  <%= f.input :batch, label: "Cantidad de cerveza (L)", placeholder:  "Cuanta cerveza quieres cocinar?", class: "form-control", input_html: { autofocus: true } %>
+  <%= f.input :recipe_id, label: "Estilo de la cerveza", as: :select, collection: current_user.recipes, class: "form-control", wrapper_html: { class: "mb-2" } %>
+
+  <%= f.submit "Crear Malta", class: "btn btn-success" %>
+<% end %>

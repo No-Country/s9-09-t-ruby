@@ -2,19 +2,27 @@ class LotsController < ApplicationController
   before_action :set_lot, only: [:show, :edit, :update, :destroy, :trigger]
 
   def index
-    @creado_lots = current_user.lots.where(status: :creado).includes(:recipe)
-    @en_maceracion_lots = current_user.lots.where(status: :en_maceracion).includes(:recipe)
-    @en_coccion_lots = current_user.lots.where(status: :en_coccion).includes(:recipe)
-    @en_fermentacion_lots = current_user.lots.where(status: :en_fermentacion).includes(:recipe)
+    @creado_lots = current_user.lots.where(status: :creado).includes(:recipe).ordered
+    @en_maceracion_lots = current_user.lots.where(status: :en_maceracion).includes(:recipe).ordered
+    @en_coccion_lots = current_user.lots.where(status: :en_coccion).includes(:recipe).ordered
+    @en_fermentacion_lots = current_user.lots.where(status: :en_fermentacion).includes(:recipe).ordered
   end
 
   def show
   end
 
   def new
+    @lot = current_user.lots.build
   end
 
   def create
+    @lot = current_user.lots.build(lot_params)
+    if @lot.save
+      redirect_to lots_path, notice: "Lote exitosamente creado."
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def edit
@@ -43,6 +51,6 @@ class LotsController < ApplicationController
   end
 
   def lot_params
-    params.require(:lot).permit(:batch)
+    params.require(:lot).permit(:batch, :recipe_id)
   end
 end

@@ -21,13 +21,15 @@ class Lot < ApplicationRecord
 
   before_validation :generate_code, on: :create
 
+  scope :ordered, -> { order(id: :desc) }
+
   # State machine to manage lot status
   aasm column: :status do
     state :creado, initial: true
     state :en_maceracion, :en_coccion, :en_fermentacion
 
     event :macerar do
-      transitions from: :creada, to: :en_maceracion
+      transitions from: :creado, to: :en_maceracion
     end
 
     event :cocinar do

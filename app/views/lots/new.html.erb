@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="header pt-4">
+    <h1>Nuevo lote de cerveza</h1>
+  </div>
+
+  <%= turbo_frame_tag "remote_modal" do %>
+    <%= render "layouts/modal_content", title: "Nuevo lote de cerveza" do %>
+      <%= render "form", lot: @lot %>
+    <% end %>
+  <% end %>
+</div>
