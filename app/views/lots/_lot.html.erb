@@ -1,12 +1,24 @@
-<div class="border rounded shadow mb-2 py-2 px-2">
-  <div class="row">
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
-      <strong><%= lot.code %></strong>
-      <h5><span class="badge bg-secondary"><%= lot.recipe.name %></span></h5>
+<div class="card shadow mb-2 bg-white">
+  <div class="card-body">
+    <div class="row">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <strong><%= lot.code %></strong>
+        <h5><span class="badge bg-secondary"><%= lot.recipe.name %></span></h5>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    Litros: <%= lot.batch %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>Litros: <%= lot.batch %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- This shows available trigger buttons for every acccount -->
+    <% available_events_for(lot).each do |event| %>
+      <%= button_to "#{event}", trigger_lot_path(lot, event: event), method: :patch, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-primary" %>
+    <% end %>
+
   </div>
 </div>

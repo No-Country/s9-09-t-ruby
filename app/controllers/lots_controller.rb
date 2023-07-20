@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :edit, :update, :destroy]
+  before_action :set_lot, only: [:show, :edit, :update, :destroy, :trigger]
 
   def index
     @creado_lots = current_user.lots.where(status: :creado).includes(:recipe)
@@ -26,9 +26,20 @@ class LotsController < ApplicationController
   def destroy
   end
 
+  def trigger
+    if @lot.send "#{params[:event]}!"
+      respond_to do |format|
+        redirect_to lots_path, notice: "Estado del lote cambiada exitosamente."
+      end
+    else
+      redirect_to lots_path, status: :unprocessable_entity, notice: "No se ha podido validar el estado del lote."
+    end
+  end
+
   private
 
   def set_lot
+    @lot = current_user.lots.find(params[:id])
   end
 
   def lot_params

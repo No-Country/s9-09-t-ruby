@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredient_items, except: [:index, :show]
   end
-  resources :lots
+  resources :lots do
+    patch :trigger, on: :member 
+  end
 end
