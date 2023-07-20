@@ -23,7 +23,7 @@ class Lot < ApplicationRecord
 
   # State machine to manage lot status
   aasm column: :status do
-    state :creada, initial: true
+    state :creado, initial: true
     state :en_maceracion, :en_coccion, :en_fermentacion
 
     event :macerar do

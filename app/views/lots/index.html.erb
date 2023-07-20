@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="header container mt-4">
+    <h1>Lotes de cerveza</h1>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-4">
+    <!-- Created lots -->
+    <div class="col">
+      <div class="d-flex rounded px-2 bg-success mb-2">
+        <strong>LOTES CREADOS</strong>
+      </div>
+      <%= render @creado_lots %>
+    </div>
+
+    <!-- Created lots -->
+    <div class="col">
+      <div class="d-flex rounded px-2 bg-success mb-2">
+        <strong>LOTES EN MACERACION</strong>
+      </div>
+      <%= render @en_maceracion_lots %>
+    </div>
+
+    <!-- Created lots -->
+    <div class="col">
+      <div class="d-flex rounded px-2 bg-success mb-2">
+        <strong>LOTES EN COCCION</strong>
+      </div>
+      <%= render @en_coccion_lots %>
+    </div>
+
+    <!-- Created lots -->
+    <div class="col">
+      <div class="d-flex rounded px-2 bg-success mb-2">
+        <strong>LOTES FERMENTACION</strong>
+      </div>
+      <%= render @en_fermentacion_lots %>
+    </div>
+
+  </div>
+
+</div>

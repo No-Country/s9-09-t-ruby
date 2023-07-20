@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  
+
   # If an user is authenticated, root is dashboard page
   authenticated :user do
     root to: 'pages#supplies', as: :authenticated_root
@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredient_items, except: [:index, :show]
   end
+  resources :lots
 end

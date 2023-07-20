@@ -21,4 +21,5 @@ class User < ApplicationRecord
   has_many :hops, dependent: :destroy
   has_many :yeasts, dependent: :destroy
   has_many :recipes, dependent: :destroy
+  has_many :lots, dependent: :destroy
 end

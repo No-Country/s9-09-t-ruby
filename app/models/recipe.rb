@@ -19,6 +19,7 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredient_items, dependent: :destroy
+  has_many :lots, dependent: :destroy
 
   validates :name, :description, :style, :batch, presence: true
   validates :name, uniqueness: { case_sensitive: false }
