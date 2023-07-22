@@ -10,9 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_163121) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_22_012247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "general_configurations", force: :cascade do |t|
+    t.decimal "efficiency_extract", precision: 4, scale: 1, default: "70.0"
+    t.decimal "evaporation_percentage", precision: 4, scale: 1, default: "20.0"
+    t.integer "bioling_time", default: 60
+    t.decimal "loss_temp", precision: 4, scale: 1, default: "0.0"
+    t.decimal "grain_temp", precision: 4, scale: 1, default: "20.0"
+    t.decimal "water_grain_ratio", precision: 3, scale: 1, default: "3.0"
+    t.decimal "mashing_temp", precision: 4, scale: 1, default: "68.0"
+    t.decimal "sparging_temp", precision: 4, scale: 1, default: "70.0"
+    t.integer "sparging_time", default: 20
+    t.integer "chilling_time", default: 30
+    t.integer "turbiduty_loss", default: 3
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_general_configurations_on_user_id"
+  end
 
   create_table "hops", force: :cascade do |t|
     t.string "name", null: false
@@ -121,6 +139,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_163121) do
     t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
+  add_foreign_key "general_configurations", "users"
   add_foreign_key "hops", "users"
   add_foreign_key "ingredient_items", "recipes"
   add_foreign_key "inventory_movements", "inventory_items"
