@@ -1,0 +1,18 @@
+<%= simple_form_for general_configuration do |f| %>
+  <%= form_error_notification(general_configuration) %>
+
+  <%= f.input :efficiency_extract, label: "Eficiencia de extraction (%)", class: "form-control", input_html: { autofocus: true } %>
+  <%= f.input :evaporation_percentage, label: "Porcentaje de evaporacion (%)", class: "form-control" %>
+  <%= f.input :bioling_time, label: "Tiempo de coccion (min.)", class: "form-control" %>
+  <%= f.input :loss_temp, label: "Perdida de temperatura - macerado (°C)", class: "form-control" %>
+  <%= f.input :grain_temp, label: "Temperatura de grano (°C)", class: "form-control" %>
+  <%= f.input :water_grain_ratio, label: "Relacion agua:grano para empaste", class: "form-control" %>
+  <%= f.input :mashing_temp, label: "Temperatura de maceracion (°C)", class: "form-control" %>
+  <%= f.input :sparging_temp, label: "Temperatura de lavado (°C)", class: "form-control" %>
+  <%= f.input :sparging_time, label: "Tiempo de lavado (°C)", class: "form-control" %>
+  <%= f.input :chilling_time, label: "Tiempo de enfriado (min)", class: "form-control" %>
+  <%= f.input :turbiduty_loss, label: "Perdida por turviedad (L)", class: "form-control" %>
+
+
+  <%= f.submit "Actualizar configuraciones", class: "btn btn-success" %>
+<% end %>

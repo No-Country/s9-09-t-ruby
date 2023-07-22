@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = current_user.recipes.ordered
+    @general_configuration = current_user.general_configuration
   end
 
   def show

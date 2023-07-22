@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     resources :ingredient_items, except: [:index, :show]
   end
   resources :lots
+  resources :general_configurations, only: [ :edit, :update ]
 end
