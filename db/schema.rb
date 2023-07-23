@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_23_200936) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_223111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_200936) do
     t.index ["user_id"], name: "index_malts_on_user_id"
   end
 
+  create_table "mash_steps", force: :cascade do |t|
+    t.decimal "start_temp", precision: 4, scale: 1, null: false
+    t.decimal "final_temp", precision: 4, scale: 1, null: false
+    t.integer "length_time", null: false
+    t.bigint "mash_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mash_id"], name: "index_mash_steps_on_mash_id"
+  end
+
   create_table "mashes", force: :cascade do |t|
     t.decimal "water_grain_ratio", precision: 3, scale: 1, null: false
     t.decimal "temp", precision: 4, scale: 1, null: false
@@ -158,6 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_200936) do
   add_foreign_key "lots", "recipes"
   add_foreign_key "lots", "users"
   add_foreign_key "malts", "users"
+  add_foreign_key "mash_steps", "mashes"
   add_foreign_key "mashes", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "yeasts", "users"
