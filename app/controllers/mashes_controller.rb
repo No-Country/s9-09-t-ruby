@@ -9,7 +9,10 @@ class MashesController < ApplicationController
   def create
     @mash = @recipe.build_mash(mash_params)
     if @mash.save
-      redirect_to recipe_path(@recipe), notice: "Maceracion exitosamente creada."
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe), notice: "Maceracion exitosamente creada." }
+        format.turbo_stream { flash.now[:notice] = "Maceracion exitosamente creada." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
