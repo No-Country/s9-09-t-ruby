@@ -21,7 +21,7 @@ class Recipe < ApplicationRecord
   has_many :ingredient_items, dependent: :destroy
   has_many :lots, dependent: :destroy
   delegate :general_configuration, to: :user
-  has_many :mashes, dependent: :destroy
+  has_one :mash, dependent: :destroy
 
   validates :name, :description, :style, :batch, presence: true
   validates :name, uniqueness: { case_sensitive: false }

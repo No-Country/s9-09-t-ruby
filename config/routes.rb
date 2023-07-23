@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :inventory_movements, only: [:new, :create]
   resources :recipes do
     resources :ingredient_items, except: [:index, :show]
+    resources :mashes, except: [:index, :show, :destroy]
   end
   resources :lots
   resources :general_configurations, only: [ :edit, :update ]
