@@ -43,6 +43,12 @@ class MashesController < ApplicationController
   end
 
   def mash_params
-    params.require(:mash).permit(:water_grain_ratio, :temp, :time, :recirculation_time)
+    params.require(:mash).permit(
+      :water_grain_ratio,
+      :temp,
+      :time,
+      :recirculation_time,
+      mash_steps_attributes: [:id, :_destroy, :start_temp, :final_temp, :length_time]
+    )
   end
 end

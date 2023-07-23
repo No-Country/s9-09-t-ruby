@@ -10,5 +10,8 @@ application.register("hello", HelloController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import NestedForm from 'stimulus-rails-nested-form'
+application.register('nested-form', NestedForm)
+
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)

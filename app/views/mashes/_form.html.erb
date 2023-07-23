@@ -1,4 +1,4 @@
-<%= simple_form_for [recipe, mash] do |f| %>
+<%= simple_form_for [recipe, mash], data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
   <%= form_error_notification(mash) %>
 
   <%= f.input :water_grain_ratio, label: "Relacion de empaste (L/Kg)", placeholder: "#{recipe.general_configuration.water_grain_ratio}", class: "form-control", input_html: { autofocus: true } %>
@@ -6,9 +6,34 @@
   <%= f.input :time, label: "Tiempo de maceracion (min)", placeholder: "#{recipe.general_configuration.mashing_time}", class: "form-control" %>
   <%= f.input :recirculation_time, label: "Tiempo de recirculacion (min)", class: "form-control" %>
 
-  <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+  <hr>
+  <div class="recipe__title">
+    Escalones
+  </div>
+  <!-- mash steps -->
+  <div class="">
+    <template data-nested-form-target="template">
+      <%= f.simple_fields_for :mash_steps, MashStep.new, child_index: 'NEW_RECORD' do |mash_step_fields| %>
+      <%= render "mash_step_form", f: mash_step_fields %>
+      <% end %>
+    </template>
+
+    <%= f.simple_fields_for :mash_steps do |mash_step_fields| %>
+      <%= render "mash_step_form", f: mash_step_fields %>
+    <% end %>
+
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-between">
+    <!-- add step button -->
+    <button type="button" data-action="nested-form#add" class="btn btn-success mb-2">Agregar escalon</button>
+
+    <%= button_tag type: 'submit', class: "btn btn-primary" do %>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
     </svg>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>
