@@ -20,6 +20,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredient_items, dependent: :destroy
   has_many :lots, dependent: :destroy
+  delegate :general_configuration, to: :user
 
   validates :name, :description, :style, :batch, presence: true
   validates :name, uniqueness: { case_sensitive: false }
@@ -30,7 +31,7 @@ class Recipe < ApplicationRecord
 
 
   def real_extract
-    has_one_malt? ? total_sugar_extract * 0.7 : 0
+    has_one_malt? ? total_sugar_extract * (general_configuration.efficiency_extract/100) : 0
   end
 
   def pre_boil_density
