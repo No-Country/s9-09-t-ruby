@@ -6,7 +6,10 @@ class GeneralConfigurationsController < ApplicationController
 
   def update
     if @general_configuration.update(general_configuration_params)
-      redirect_to recipes_path, notice: "Configuraciones generales exitosamente editados."
+      respond_to do |format|
+        format.html { redirect_to recipes_path, notice: "Configuraciones generales exitosamente editados." }
+        format.turbo_stream { flash.now[:notice] = "Configuraciones generales exitosamente editados." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end

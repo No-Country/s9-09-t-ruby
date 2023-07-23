@@ -17,11 +17,12 @@
     </div>
     <%= yield %>
     <div
-      class="modal fade"
+      class="modal modal-lg fade"
       id="exampleModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
       data-controller="modal"
       data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close"
     >

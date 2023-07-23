@@ -17,6 +17,7 @@
 #  user_id                :bigint           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  mashing_time           :integer          default(60)
 #
 class GeneralConfiguration < ApplicationRecord
   belongs_to :user
