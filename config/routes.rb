@@ -20,12 +20,6 @@ Rails.application.routes.draw do
     resources :ingredient_items, except: [:index, :show]
     resources :mashes, except: [:index, :show, :destroy]
   end
-<<<<<<< HEAD
-  resources :lots do
-    patch :trigger, on: :member 
-  end
-=======
   resources :lots
   resources :general_configurations, only: [ :edit, :update ]
->>>>>>> general_settings
 end
