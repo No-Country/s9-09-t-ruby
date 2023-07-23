@@ -1,9 +1,9 @@
 <%= simple_form_for [recipe, mash] do |f| %>
   <%= form_error_notification(mash) %>
 
-  <%= f.input :water_grain_ratio, label: "Relacion de empaste (L/Kg)", class: "form-control", input_html: { autofocus: true, value: recipe.general_configuration.water_grain_ratio } %>
-  <%= f.input :temp, label: "Temperatura de maceracion (°C)", class: "form-control", input_html: { value: recipe.general_configuration.mashing_temp } %>
-  <%= f.input :time, label: "Tiempo de maceracion (min)", class: "form-control", input_html: { value: recipe.general_configuration.mashing_time } %>
+  <%= f.input :water_grain_ratio, label: "Relacion de empaste (L/Kg)", placeholder: "#{recipe.general_configuration.water_grain_ratio}", class: "form-control", input_html: { autofocus: true } %>
+  <%= f.input :temp, label: "Temperatura de maceracion (°C)", placeholder: "#{recipe.general_configuration.mashing_temp}", class: "form-control" %>
+  <%= f.input :time, label: "Tiempo de maceracion (min)", placeholder: "#{recipe.general_configuration.mashing_time}", class: "form-control" %>
   <%= f.input :recirculation_time, label: "Tiempo de recirculacion (min)", class: "form-control" %>
 
   <%= button_tag type: 'submit', class: "btn btn-primary" do %>
