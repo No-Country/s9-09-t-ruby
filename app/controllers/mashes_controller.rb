@@ -22,6 +22,14 @@ class MashesController < ApplicationController
   end
 
   def update
+    if @mash.update(mash_params)
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe), notice: "Maceracion exitosamente editada." }
+        format.turbo_stream { flash.now[:notice] = "Maceracion exitosamente editada." }
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
