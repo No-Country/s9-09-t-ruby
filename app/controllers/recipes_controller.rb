@@ -3,12 +3,14 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = current_user.recipes.ordered
+    @general_configuration = current_user.general_configuration
   end
 
   def show
     @malts = @recipe.ingredient_items.where(addable_type: "Malt").includes(:addable)
     @hops = @recipe.ingredient_items.where(addable_type: "Hop").includes(:addable)
     @yeasts = @recipe.ingredient_items.where(addable_type: "Yeast").includes(:addable)
+    @mash = @recipe.mash
   end
 
   def new

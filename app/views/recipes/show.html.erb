@@ -5,9 +5,15 @@
 
   <div class="row row-cols-1 row-cols-md-2">
 
-    <div id="beer-attributes" class="col-12 col-md-3">
-      <%= render "recipes/beer_attributes", recipe: @recipe %>
-    </div>
+    <section class="col-12 col-md-3">
+      <div id="beer-attributes" class="col">
+        <%= render "recipes/beer_attributes", recipe: @recipe %>
+      </div>
+      <div id="mashing-attributes" class="col">
+        <%= render "recipes/mashing_attributes", recipe: @recipe, mash: @mash %>
+      </div>
+    </section>
+
 
     <div class="col-12 col-md-9">
       <!-- Malts -->

@@ -3,7 +3,9 @@
     <h1>Editar receta</h1>
   </div>
 
-  <%= turbo_frame_tag @recipe do %>
-    <%= render "form", recipe: @recipe %>
+  <%= turbo_frame_tag "remote_modal" do %>
+    <%= render "layouts/modal_content", title: "Editar receta" do %>
+      <%= render "form", recipe: @recipe %>
+    <% end %>
   <% end %>
 </div>

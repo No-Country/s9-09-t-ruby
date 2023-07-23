@@ -22,4 +22,13 @@ class User < ApplicationRecord
   has_many :yeasts, dependent: :destroy
   has_many :recipes, dependent: :destroy
   has_many :lots, dependent: :destroy
+  has_one :general_configuration, dependent: :destroy
+
+  after_create :generate_general_configuration
+
+  private
+
+  def generate_general_configuration
+    GeneralConfiguration.create!(user: self)
+  end
 end

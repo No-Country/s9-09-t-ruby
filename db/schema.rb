@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_163121) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_200936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "general_configurations", force: :cascade do |t|
+    t.decimal "efficiency_extract", precision: 4, scale: 1, default: "70.0"
+    t.decimal "evaporation_percentage", precision: 4, scale: 1, default: "20.0"
+    t.integer "bioling_time", default: 60
+    t.decimal "loss_temp", precision: 4, scale: 1, default: "0.0"
+    t.decimal "grain_temp", precision: 4, scale: 1, default: "20.0"
+    t.decimal "water_grain_ratio", precision: 3, scale: 1, default: "3.0"
+    t.decimal "mashing_temp", precision: 4, scale: 1, default: "68.0"
+    t.decimal "sparging_temp", precision: 4, scale: 1, default: "70.0"
+    t.integer "sparging_time", default: 20
+    t.integer "chilling_time", default: 30
+    t.integer "turbiduty_loss", default: 3
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "mashing_time", default: 60
+    t.index ["user_id"], name: "index_general_configurations_on_user_id"
+  end
 
   create_table "hops", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +99,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_163121) do
     t.index ["user_id"], name: "index_malts_on_user_id"
   end
 
+  create_table "mashes", force: :cascade do |t|
+    t.decimal "water_grain_ratio", precision: 3, scale: 1, null: false
+    t.decimal "temp", precision: 4, scale: 1, null: false
+    t.integer "time", null: false
+    t.integer "recirculation_time", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_mashes_on_recipe_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -121,12 +151,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_163121) do
     t.index ["yeast_type"], name: "index_yeasts_on_yeast_type"
   end
 
+  add_foreign_key "general_configurations", "users"
   add_foreign_key "hops", "users"
   add_foreign_key "ingredient_items", "recipes"
   add_foreign_key "inventory_movements", "inventory_items"
   add_foreign_key "lots", "recipes"
   add_foreign_key "lots", "users"
   add_foreign_key "malts", "users"
+  add_foreign_key "mashes", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "yeasts", "users"
 end

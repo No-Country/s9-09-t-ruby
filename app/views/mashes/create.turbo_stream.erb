@@ -1,0 +1,4 @@
+<%= turbo_stream.update "mashing-attributes" do %>
+  <%= render "recipes/mashing_attributes", recipe: @recipe, mash: @mash %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
