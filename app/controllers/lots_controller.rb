@@ -18,7 +18,10 @@ class LotsController < ApplicationController
   def create
     @lot = current_user.lots.build(lot_params)
     if @lot.save
-      redirect_to lots_path, notice: "Lote exitosamente creado."
+      respond_to do |format|
+        format.html { redirect_to lots_path, notice: "Lote exitosamente creado." }
+        format.turbo_stream { flash.now[:notice] = "Lote exitosamente creado." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,9 +32,22 @@ class LotsController < ApplicationController
   end
 
   def update
+    if @lot.update(lot_params)
+      respond_to do |format|
+        format.html { redirect_to lots_path, notice: "Lote exitosamente editado." }
+        format.turbo_stream { flash.now[:notice] = "Lote exitosamente editado." }
+      end
+    else
+    end
   end
 
   def destroy
+    if @lot.destroy
+      respond_to do |format|
+        format.html { redirect_to lots_pah, notice: "Lote exitosamente eliminado" }
+        format.turbo_stream { flash.now[:notice] = "Lote exitosamente eliminado" }
+      end
+    end
   end
 
   def trigger

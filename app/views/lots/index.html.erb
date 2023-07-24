@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="header container d-flex align-items-center justify-content-between mt-4">
     <h1>Lotes de cerveza</h1>
-    <%= link_to "Nuevo lote de cerveza", new_lot_path, data: { turbo_frame: "remote_modal" }, class: "btn btn-primary" %>
+    <%= link_to "Nuevo lote de cerveza", new_lot_path, data: { turbo_frame: "remote_modal" }, class: "btn btn-success" %>
   </div>
 
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
@@ -10,7 +10,9 @@
       <div class="d-flex rounded px-2 bg-success mb-2">
         <strong>LOTES CREADOS</strong>
       </div>
-      <%= render @creado_lots %>
+      <%= turbo_frame_tag "creado_lots" do %>
+        <%= render @creado_lots %>
+      <% end %>
     </div>
 
     <!-- Created lots -->
