@@ -2,12 +2,19 @@
   <div class="recipe__title">
     Maceracion
   </div>
-  <div class="d-flex flex-column">
+  <div class="d-flex flex-column mb-2">
     <% if recipe.mash.nil? %>
       <%= button_to "Agregar maceracion", new_recipe_mash_path(recipe), method: :get, data: { turbo_frame: "remote_modal" }, class: "btn btn-success" %>
     <% else %>
       <%= render 'mashes/mash_data', mash: mash %>
       <%= button_to "Editar maceracion", edit_recipe_mash_path(recipe, mash), method: :get, data: { turbo_frame: "remote_modal" }, class: "btn btn-primary" %>
+      <!-- Mash steps -->
+      <div class="recipe__title mt-2">
+        Escalones
+      </div>
+
+      <%= render partial: "mashes/mash_step", collection: mash.mash_steps, as: :mash_step %>
     <% end %>
   </div>
+
 </div>

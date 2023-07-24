@@ -16,6 +16,6 @@ class Mash < ApplicationRecord
   has_many :mash_steps, dependent: :destroy
 
   validates :water_grain_ratio, :temp, :time, :recirculation_time, presence: true, numericality: { greater_than: 0 }
-  validates :mash_steps, presence: true
+  # validates :mash_steps, presence: true
   accepts_nested_attributes_for :mash_steps, reject_if: :all_blank, allow_destroy: true
 end
