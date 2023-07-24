@@ -6,6 +6,7 @@
           <%= link_to recipe.name.upcase, recipe_path(recipe), data: { turbo_frame: "_top" }, class: "text-decoration-none" %>
         </h5>
       </strong>
+      <h5><span class="badge bg-secondary"><%= recipe.status %></span></h5>
       <div class="actions d-flex gap-2">
         <%= button_to edit_recipe_path(recipe), method: :get, data: { turbo_frame: "remote_modal" }, class: "btn btn-primary" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">

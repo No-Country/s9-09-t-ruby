@@ -17,6 +17,8 @@
 #  user_id     :bigint           not null
 #
 class Recipe < ApplicationRecord
+  include AASM
+  
   belongs_to :user
   has_many :ingredient_items, dependent: :destroy
   has_many :lots, dependent: :destroy
@@ -30,6 +32,15 @@ class Recipe < ApplicationRecord
 
   scope :ordered, -> { order(id: :desc) }
 
+  # State machine to manage lot status
+  aasm column: :status do
+    state :en_edicion, initial: true
+    state :terminada
+
+    event :terminar do
+      transitions from: :en_edicion, to: :terminada
+    end
+  end
 
   def real_extract
     has_one_malt? ? total_sugar_extract * (general_configuration.efficiency_extract/100) : 0

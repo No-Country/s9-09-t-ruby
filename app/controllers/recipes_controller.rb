@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_recipe, only: [ :show, :edit, :update, :destroy, :trigger ]
 
   def index
     @recipes = current_user.recipes.ordered
@@ -50,6 +50,16 @@ class RecipesController < ApplicationController
         format.html { edirect_to recipes_path, notice: "Receta exitosamente eliminada." }
         format.turbo_stream { flash.now[:notice] = "Receta exitosamente eliminada." }
       end
+    end
+  end
+
+  def trigger
+    if @recipe.send "#{params[:event]}!"
+      respond_to do |format|
+        redirect_to recipe_path(@recipe), notice: "Estado de la receta cambiada exitosamente."
+      end
+    else
+      redirect_to recipe_path(@recipe), status: :unprocessable_entity, notice: "No se ha podido validar el estado de la receta."
     end
   end
 
