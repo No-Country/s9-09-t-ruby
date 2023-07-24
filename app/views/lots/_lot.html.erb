@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
-          <strong><%= lot.code %></strong>
+          <strong><%= link_to lot.code, lot_path(lot), data: { turbo_frame: "_top" } %></strong>
           <h5><span class="badge bg-secondary"><%= lot.recipe.name %></span></h5>
         </div>
       </div>
@@ -21,7 +21,7 @@
       <%= button_to "#{event}", trigger_lot_path(lot, event: event), method: :patch, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-primary" %>
       <% end %>
       -->
-      
+
       <% if lot.creado? %>
       <div class="d-flex align-items-center justify-content-center gap-2">
         <%= button_to edit_lot_path(lot), method: :get, data: { turbo_frame: "remote_modal" }, class: "btn btn-success" do %>

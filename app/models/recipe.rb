@@ -30,6 +30,7 @@ class Recipe < ApplicationRecord
   validates :batch, numericality: { greater_than: 0 }
 
   scope :ordered, -> { order(id: :desc) }
+  scope :filter_by_status, -> (status) { where("status = ?", status) }
 
   # State machine to manage lot status
   aasm column: :status do
