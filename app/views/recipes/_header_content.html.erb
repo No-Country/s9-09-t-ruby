@@ -1,0 +1,6 @@
+<h2><%= recipe.name %></h2>
+<h5><span class="badge bg-secondary"><%= recipe.status %></span></h5>
+<!-- This shows available trigger buttons for every lot -->
+<% available_events_for(recipe).each do |event| %>
+  <%= button_to "#{event}", trigger_recipe_path(recipe, event: event), method: :patch, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-primary" %>
+<% end %>

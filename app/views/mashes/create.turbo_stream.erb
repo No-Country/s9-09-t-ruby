@@ -1,4 +1,10 @@
 <%= turbo_stream.update "mashing-attributes" do %>
   <%= render "recipes/mashing_attributes", recipe: @recipe, mash: @mash %>
 <% end %>
+
+<!-- Updates header content -->
+<%= turbo_stream.update "header" do %>
+  <%= render "recipes/header_content", recipe: @recipe %>
+<% end %>
+
 <%= render_turbo_stream_flash_messages %>

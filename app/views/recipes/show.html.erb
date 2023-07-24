@@ -1,11 +1,6 @@
 <div class="container-fluid recipe">
-  <div class="header d-flex align-items-center gap-2 pt-4">
-    <h2><%= @recipe.name %></h2>
-    <h5><span class="badge bg-secondary"><%= @recipe.status %></span></h5>
-    <!-- This shows available trigger buttons for every lot -->
-    <% available_events_for(@recipe).each do |event| %>
-      <%= button_to "#{event}", trigger_recipe_path(@recipe, event: event), method: :patch, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-primary" %>
-    <% end %>
+  <div id="header" class="header d-flex align-items-center gap-2 pt-4">
+    <%= render "recipes/header_content", recipe: @recipe %>
   </div>
 
   <div class="row row-cols-1 row-cols-md-2">
@@ -45,9 +40,11 @@
           <%= render "ingredient_items/malt_result", recipe: @recipe %>
         </div>
         <!-- Button to add new matl -->
+        <% if @recipe.en_edicion? %>
         <div class="recipe__add-ingredient">
           <%= link_to "Agregar malta", new_recipe_ingredient_item_path(@recipe, addable_type: 'Malt'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Malt") }, class: "btn btn-success text" %>
         </div>
+        <% end %>
       </section>
 
       <!-- Hops -->
@@ -75,9 +72,11 @@
           <%= render "ingredient_items/hop_result", recipe: @recipe %>
         </div>
         <!-- Button to add new hop -->
+        <% if @recipe.en_edicion? %>
         <div class="recipe__add-ingredient">
           <%= link_to "Agregar lupulo", new_recipe_ingredient_item_path(@recipe, addable_type: 'Hop'), data: { turbo_frame: nested_dom_id(IngredientItem.new, "Hop") }, class: "btn btn-success text" %>
         </div>
+        <% end %>
       </section>
 
       <!-- Yeasts -->

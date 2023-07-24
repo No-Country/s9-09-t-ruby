@@ -18,7 +18,7 @@
 #
 class Recipe < ApplicationRecord
   include AASM
-  
+
   belongs_to :user
   has_many :ingredient_items, dependent: :destroy
   has_many :lots, dependent: :destroy
@@ -29,7 +29,6 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: { case_sensitive: false }
   validates :batch, numericality: { greater_than: 0 }
 
-
   scope :ordered, -> { order(id: :desc) }
 
   # State machine to manage lot status
@@ -38,7 +37,7 @@ class Recipe < ApplicationRecord
     state :terminada
 
     event :terminar do
-      transitions from: :en_edicion, to: :terminada
+      transitions from: :en_edicion, to: :terminada, guard: :has_ingredients_and_mashing?
     end
   end
 
@@ -104,4 +103,14 @@ class Recipe < ApplicationRecord
     ingredient_items.where(addable_type: "Yeast").count > 0
   end
 
+  private
+
+  # Mashing
+  def has_a_mash?
+    !mash.nil?
+  end
+
+  def has_ingredients_and_mashing?
+    has_one_malt? and has_one_hop? and has_one_yeast? and has_a_mash?
+  end
 end
