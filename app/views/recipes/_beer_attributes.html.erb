@@ -11,14 +11,17 @@
     </div>
     <table class="table">
       <tbody>
-        <tr>
-          <th scope="row">VOLUMEN (L)</th>
-          <td><%= recipe.batch %></td>
-        </tr>
-        <tr>
-          <th scope="row">EXTRACTO REAL(kg)</th>
-          <td><%= recipe.real_extract.round(1) %></td>
-        </tr>
+        <!-- if controller is :recipes shows this -->
+        <% if controller_name == "recipes" %>
+          <tr>
+            <th scope="row">VOLUMEN (L)</th>
+            <td><%= recipe.batch %></td>
+          </tr>
+          <tr>
+            <th scope="row">EXTRACTO REAL(kg)</th>
+            <td><%= recipe.real_extract.round(1) %></td>
+          </tr>
+        <% end %>
         <tr>
           <th scope="row">OG</th>
           <td><%= recipe.computed_og %></td>
