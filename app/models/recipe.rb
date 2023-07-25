@@ -38,7 +38,7 @@ class Recipe < ApplicationRecord
     state :terminada
 
     event :terminar do
-      transitions from: :en_edicion, to: :terminada, guard: :has_ingredients_and_mashing?
+      transitions from: :en_edicion, to: :terminada, guard: :has_ingredients_and_mashing?, after: :update_attributes
     end
   end
 
@@ -105,6 +105,16 @@ class Recipe < ApplicationRecord
   end
 
   private
+
+  def update_attributes
+    self.update(
+      og: computed_og,
+      fg: computed_fg,
+      abv: computed_abv,
+      color: srm,
+      ibus: total_ibus
+    )
+  end
 
   # Mashing
   def has_a_mash?

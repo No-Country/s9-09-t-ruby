@@ -4,9 +4,9 @@
   </div>
   <div class="d-flex flex-column">
     <strong>COLOR</strong>
-    <div class="recipe__srm-color srm-color__<%= recipe.srm.round.to_s %>">
+    <div class="recipe__srm-color srm-color__<%= recipe.en_edicion? ? recipe.srm.round.to_s : recipe.color.round %>">
       <strong>
-        <%= recipe.srm.round%>
+        <%= recipe.en_edicion? ? recipe.srm.round.to_s : recipe.color.round %>
       </strong>
     </div>
     <table class="table">
@@ -24,19 +24,19 @@
         <% end %>
         <tr>
           <th scope="row">OG</th>
-          <td><%= recipe.computed_og %></td>
+          <td><%= recipe.en_edicion? ? recipe.computed_og : recipe.og %></td>
         </tr>
         <tr>
           <th scope="row">FG</th>
-          <td><%= recipe.computed_fg %></td>
+          <td><%= recipe.en_edicion? ? recipe.computed_fg : recipe.fg %></td>
         </tr>
         <tr>
           <th scope="row">ABV</th>
-          <td><%= recipe.computed_abv.round(1) %> %</td>
+          <td><%= recipe.en_edicion? ? recipe.computed_abv.round(1) : recipe.abv %> %</td>
         </tr>
         <tr>
           <th scope="row">IBU</th>
-          <td><%= recipe.total_ibus.round(1) %></td>
+          <td><%= recipe.en_edicion? ? recipe.total_ibus.round(1) : recipe.ibus %></td>
         </tr>
       </tbody>
     </table>

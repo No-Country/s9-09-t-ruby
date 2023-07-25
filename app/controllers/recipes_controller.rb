@@ -56,7 +56,7 @@ class RecipesController < ApplicationController
   def trigger
     if @recipe.send "#{params[:event]}!"
       respond_to do |format|
-        redirect_to recipe_path(@recipe), notice: "Estado de la receta cambiada exitosamente."
+        format.html { redirect_to recipe_path(@recipe), notice: "Estado de la receta cambiada exitosamente." }
       end
     else
       redirect_to recipe_path(@recipe), status: :unprocessable_entity, notice: "No se ha podido validar el estado de la receta."
