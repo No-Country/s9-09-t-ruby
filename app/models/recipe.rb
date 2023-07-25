@@ -15,6 +15,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
+#  status      :string
 #
 class Recipe < ApplicationRecord
   include AASM

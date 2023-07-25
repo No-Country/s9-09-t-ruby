@@ -16,7 +16,8 @@ class Lot < ApplicationRecord
 
   belongs_to :recipe
   belongs_to :user
-
+  has_many :todos, dependent: :destroy
+  
   validates :batch, presence: true
 
   before_validation :generate_code, on: :create

@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_023123) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_193818) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "general_configurations", force: :cascade do |t|
@@ -137,6 +138,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_023123) do
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
+  create_table "todos", force: :cascade do |t|
+    t.integer "todo_type", null: false
+    t.string "status"
+    t.hstore "transitions", default: [], array: true
+    t.bigint "lot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lot_id"], name: "index_todos_on_lot_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -172,5 +183,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_023123) do
   add_foreign_key "mash_steps", "mashes"
   add_foreign_key "mashes", "recipes"
   add_foreign_key "recipes", "users"
+  add_foreign_key "todos", "lots"
   add_foreign_key "yeasts", "users"
 end
