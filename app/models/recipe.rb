@@ -57,7 +57,10 @@ class Recipe < ApplicationRecord
     end
     # Add quantities from hops ingredients
     ingredient_items.where(addable_type: "Hop").each do |hop|
-      quantities["hops"].store(hop.addable.name, hop_ingredient_quantity(hop.ibus, hop.fc, hop.utilization_percentage, hop.addable.alpha_acids, batch).round(2))
+      quantities["hops"].store(hop.addable.name, {
+        "quantity" => hop_ingredient_quantity(hop.ibus, hop.fc, hop.utilization_percentage, hop.addable.alpha_acids, batch).round(2),
+        "boil_time" => hop.boil_time
+        })
     end
     # Add dosage from yeast ingredient
     ingredient_items.where(addable_type: "Yeast").each do |yeast|

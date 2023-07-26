@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="header mt-4">
-    <%= link_to sanitize("&larr; Volver"), :back %>
+    <%= link_to sanitize("&larr; Volver"), lots_path %>
     <h1><%= @lot.code %></h1>
   </div>
 
@@ -16,7 +16,8 @@
       <%= render "lots/mashing_todo", lot: @lot, ingredient_items_quantities: @ingredient_items_quantities %>
 
       <!-- Todos for bioiling stage -->
-      
+      <%= render "lots/boiling_todo", lot: @lot, ingredient_items_quantities: @ingredient_items_quantities %>
+
     </div>
   </section>
 </div>
