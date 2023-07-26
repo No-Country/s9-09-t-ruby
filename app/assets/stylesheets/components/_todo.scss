@@ -21,4 +21,11 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
+  &__information {
+    border: var(--border);
+    padding: var(--space-xs) var(--space-xs);
+    background-color: var(--color-quaternary);
+    box-shadow: var(--shadow-small)
+  }
 }
