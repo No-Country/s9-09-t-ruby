@@ -20,6 +20,9 @@
 
       <!-- Todos for chilling stage -->
       <%= render "lots/chilling_todo", lot: @lot %>
+
+      <!-- Todos for chilling stage -->
+      <%= render "lots/fermentation_todo", lot: @lot, ingredient_items_quantities: @ingredient_items_quantities %>
     </div>
   </section>
 </div>

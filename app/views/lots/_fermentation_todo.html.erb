@@ -1,0 +1,39 @@
+<div class="todo">
+  <div class="col">
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <div class="col">
+        <div class="todo__title">
+          Fermentacion
+        </div>
+      </div>
+      <div class="col-1 d-flex justify-content-end">
+        <%= button_to "#", class: "btn btn-warning mb-2" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+        </svg>
+        <% end %>
+      </div>
+    </div>
+    <div class="todo__information">
+      <p>
+        El proceso de hervor tiene una duracion de <strong>7 dias</strong>. Se agrega la siguiente levadura:
+      </p>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Levadura</th>
+          <th scope="col">Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% ingredient_items_quantities["yeast"].each do |name, quantity| %>
+        <tr>
+          <td><%= name %></td>
+          <td><%= quantity %> gr</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div
