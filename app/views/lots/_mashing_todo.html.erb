@@ -16,8 +16,8 @@
     </div>
     <div class="todo__information">
       <p>
-        El proceso de maceracion tiene una duracion de <strong><%= lot.user.general_configuration.bioling_time %> mins</strong>. Se agregaran las
-        siguientes maltas:
+        El proceso de maceracion tiene una duracion de <strong><%= lot.user.general_configuration.bioling_time %> mins</strong> a una tempertura de
+        <strong><%= lot.recipe.mash.temp %> °C</strong>. Se agregaran las siguientes maltas:
       </p>
     </div>
     <table class="table">
@@ -73,7 +73,7 @@
   </div>
   <div class="todo todo__line">
     <div class="col">Duracion: <%= lot.user.general_configuration.sparging_time %> min</div>
-    <div class="col">Temperatura: <%= lot.user.general_configuration.sparging_temp %> C</div>
+    <div class="col">Temperatura: <%= lot.user.general_configuration.sparging_temp %> °C</div>
     <div class="col-1 d-flex justify-content-end">
       <%= button_to "#", class: "btn btn-success" do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
