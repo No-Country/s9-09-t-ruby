@@ -12,6 +12,8 @@ class LotsController < ApplicationController
     @ingredient_items_quantities = @lot.recipe.ingredient_items_quantities(@lot.batch)
     @mashing_todo = @lot.todos.where(todo_type: :maceracion).first
     @boiling_todo = @lot.todos.where(todo_type: :coccion).first
+    @chilling_todo = @lot.todos.where(todo_type: :enfriamiento).first
+    @fermentation_todo = @lot.todos.where(todo_type: :fermentacion).first
   end
 
   def new

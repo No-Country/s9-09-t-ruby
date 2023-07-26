@@ -6,11 +6,17 @@
           Enfriamiento
         </div>
       </div>
-      <div class="col-1 d-flex justify-content-end">
-        <%= button_to "#", class: "btn btn-warning mb-2" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-        </svg>
+      <div class="col-2 d-flex justify-content-end">
+        <% if @chilling_todo.pendiente? %>
+          <% available_events_for(@chilling_todo).each do |event| %>
+            <%= button_to trigger_todo_lot_path(lot, todo_id: @chilling_todo.id, event: event), method: :patch, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-warning mb-2" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+              </svg>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h4><span class="badge text-bg-warning"><%= @chilling_todo.status %></span></h4>
         <% end %>
       </div>
     </div>
@@ -21,5 +27,5 @@
     </div>
 
   </div>
-  
+
 </div
