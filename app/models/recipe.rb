@@ -49,11 +49,14 @@ class Recipe < ApplicationRecord
     quantities = {
       "malts" => {},
       "hops" => {},
-      "yeast" => {}
+      "yeast" => {},
+      "mash_water" => 0
     }
     # Add quantities from malts ingredients
     ingredient_items.where(addable_type: "Malt").each do |malt|
-      quantities["malts"].store(malt.addable.name, malt_ingredient_quantity(malt.malt_percentage, malt.addable.extract, batch).round(2))
+      quantity = malt_ingredient_quantity(malt.malt_percentage, malt.addable.extract, batch).round(2)
+      quantities["malts"].store(malt.addable.name, quantity)
+      quantities["mash_water"] += (quantity * mash.water_grain_ratio)
     end
     # Add quantities from hops ingredients
     ingredient_items.where(addable_type: "Hop").each do |hop|
