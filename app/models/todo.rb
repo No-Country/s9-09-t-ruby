@@ -26,7 +26,7 @@ class Todo < ApplicationRecord
     lavado: 3,
     coccion: 4,
     enfriamiento: 5,
-    fermentacio: 6,
+    fermentacion: 6,
     maduracion: 7,
     carbonatacion: 8
   }
