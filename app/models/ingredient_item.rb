@@ -28,12 +28,12 @@ class IngredientItem < ApplicationRecord
   }
 
   HOP_UTILIZATION_RANGE = {
-    "1 - 9" => 6,
-    "10 - 19" => 15,
-    "20 - 29" => 19,
-    "30 - 44" => 24,
-    "45 - 59" => 27,
-    "mas de 60" => 34
+    "1 - 9" => 6.0,
+    "10 - 19" => 15.0,
+    "20 - 29" => 19.0,
+    "30 - 44" => 24.0,
+    "45 - 59" => 27.0,
+    "mas de 60" => 34.0
   }
 
   def self.boil_time_range

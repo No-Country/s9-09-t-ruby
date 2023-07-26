@@ -12,6 +12,9 @@
 #
 class Todo < ApplicationRecord
   include AASM
+  include RankedModel
+
+  ranks :row_order
 
   belongs_to :lot
 

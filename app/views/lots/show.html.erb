@@ -11,17 +11,34 @@
       <%= render 'recipes/beer_attributes', recipe: @lot.recipe %>
     </div>
     <div class="col-12 col-md-9">
-      <!-- Todo for ingredient list -->
-      <div class="lot__ingredients-preparation">
-        aca va los todo list para maceracion
-      </div
       <!-- Todos for mashing stage -->
-      <div class="lot__mashing-stage">
-        aca va los todo list para maceracion
+      <div class="todo">
+        <div class="col">
+          <div class="todo__title">
+            Maceracion
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Malta</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ingredient_items_quantities["malts"].each do |name, quantity| %>
+              <tr>
+                <td><%= name %></td>
+                <td><%= quantity %> Kg</td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div
+      
       <!-- Todos for bioiling stage -->
-      <div class="lot__boiling-stage">
-        aca va los todo list para maceracion
+      <div class="todo">
+        <%= @lot.todos.rank(:row_order).where(todo_type: :recirculado)%>
       </div
     </div>
   </section>

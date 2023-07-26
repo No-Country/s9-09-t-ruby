@@ -47,6 +47,7 @@ gem "bootsnap", require: false
 gem "simple_form"
 gem "devise"
 gem "aasm"
+gem 'ranked-model'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

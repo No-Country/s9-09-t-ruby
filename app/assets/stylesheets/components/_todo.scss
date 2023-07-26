@@ -1,0 +1,18 @@
+.todo {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: white;
+  padding: var(--space-xs) var(--space-xs);
+  margin-bottom: var(--space-xs);
+  box-shadow: var(--shadow-small);
+
+  &__title {
+    border-radius: 40px;
+    margin-bottom: var(--space-xs);
+    background-color: var(--color-primary-rotate);
+    padding: var(--space-xxxs) var(--space-s);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+  }
+}

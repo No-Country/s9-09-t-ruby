@@ -9,6 +9,7 @@ class LotsController < ApplicationController
   end
 
   def show
+    @ingredient_items_quantities = @lot.recipe.ingredient_items_quantities(@lot.batch)
   end
 
   def new

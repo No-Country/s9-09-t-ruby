@@ -17,10 +17,11 @@ class Lot < ApplicationRecord
   belongs_to :recipe
   belongs_to :user
   has_many :todos, dependent: :destroy
-  
+
   validates :batch, presence: true
 
   before_validation :generate_code, on: :create
+  after_create :generate_todos
 
   scope :ordered, -> { order(id: :desc) }
 
@@ -46,5 +47,9 @@ class Lot < ApplicationRecord
 
   def generate_code
     self.code = SecureRandom.hex(8)
+  end
+
+  def generate_todos
+    todos.todo_types.each {|key, value| todos.create!(todo_type: value)}
   end
 end
