@@ -15,4 +15,9 @@
     font-weight: bold;
     text-align: center;
   }
+
+  &__mash-step {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
