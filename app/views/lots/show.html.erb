@@ -2,10 +2,15 @@
 
   <div class="header mt-4">
     <%= link_to sanitize("&larr; Volver"), lots_path %>
-    <div class="d-flex flex-wrap align-items-center gap-2">
-      <h1><%= @lot.code %></h1>
-      <h4><span class="badge bg-secondary"><%= @lot.recipe.name %></span></h4>
-      <h4><span class="badge bg-primary"><%= @lot.status %></span></h4>
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <h1><%= @lot.code %></h1>
+        <h4><span class="badge bg-secondary"><%= @lot.recipe.name %></span></h4>
+        <h4><span class="badge bg-primary"><%= @lot.status %></span></h4>
+      </div>
+      <% if @lot.creado? %>
+        <%= button_to "Iniciar", trigger_lot_path(@lot, event: "macerar"), method: :patch, data: { turbo_confirm: "Esta seguro?" }, class: "btn btn-warning mb-2"%>
+      <% end %>
     </div>
   </div>
 

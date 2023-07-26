@@ -39,11 +39,22 @@ class Todo < ApplicationRecord
     after_all_transitions :log_status_change
 
     event :terminar do
-      transitions from: :pendiente, to: :terminada
+      transitions from: :pendiente, to: :terminada, after: :update_lot_status
     end
   end
 
   private
+
+  def update_lot_status
+    if todo_type == "maceracion" or todo_type == "enfriamiento"
+      event = {
+        "maceracion" => "cocinar",
+        "enfriamiento" => "fermentar"
+      }
+      # debugger
+      lot.send "#{event[todo_type]}!"
+    end
+  end
 
   def log_status_change
     transitions.push(

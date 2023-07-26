@@ -6,6 +6,7 @@
           Fermentacion
         </div>
       </div>
+      <% unless @lot.creado? %>
       <div class="col-2 d-flex justify-content-end">
         <% if @fermentation_todo.pendiente? %>
           <% available_events_for(@fermentation_todo).each do |event| %>
@@ -19,6 +20,7 @@
           <h4><span class="badge text-bg-warning"><%= @fermentation_todo.status %></span></h4>
         <% end %>
       </div>
+      <% end %>
     </div>
     <div class="todo__information">
       <p>
