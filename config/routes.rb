@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
   resources :lots do
     patch :trigger, on: :member
+    patch :trigger_todo, on: :member
   end
   resources :general_configurations, only: [ :edit, :update ]
 end

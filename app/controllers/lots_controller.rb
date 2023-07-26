@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :edit, :update, :destroy, :trigger]
+  before_action :set_lot, only: [:show, :edit, :update, :destroy, :trigger, :trigger_todo]
 
   def index
     @creado_lots = current_user.lots.where(status: :creado).includes(:recipe).ordered
@@ -10,6 +10,7 @@ class LotsController < ApplicationController
 
   def show
     @ingredient_items_quantities = @lot.recipe.ingredient_items_quantities(@lot.batch)
+    @mashing_todo = @lot.todos.where(todo_type: :maceracion).first
   end
 
   def new
@@ -58,6 +59,17 @@ class LotsController < ApplicationController
       end
     else
       redirect_to lots_path, status: :unprocessable_entity, notice: "No se ha podido validar el estado del lote."
+    end
+  end
+
+  def trigger_todo
+    @todo = @lot.todos.find(params[:todo_id])
+    if @todo.send "#{params[:event]}!"
+      respond_to do |format|
+        redirect_to lot_path(@lot), notice: "Estado de la tarea cambiada exitosamente."
+      end
+    else
+      redirect_to lot_path(@lot), status: :unprocessable_entity, notice: "No se ha podido validar el estado de la tarea."
     end
   end
 
