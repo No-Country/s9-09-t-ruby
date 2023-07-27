@@ -12,7 +12,7 @@
     <table class="table">
       <tbody>
         <!-- if controller is :recipes shows this -->
-        <% if controller_name == "recipes" %>
+        <% if controller_name == "recipes" or controller_name == "ingredient_items" %>
           <tr>
             <th scope="row">VOLUMEN (L)</th>
             <td><%= recipe.batch %></td>
