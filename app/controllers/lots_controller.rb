@@ -58,7 +58,7 @@ class LotsController < ApplicationController
   def trigger
     if @lot.send "#{params[:event]}!"
       respond_to do |format|
-        format.html { redirect_to lots_path, notice: "Estado del lote cambiada exitosamente." }
+        format.html { redirect_to lot_path(@lot), notice: "Estado del lote cambiada exitosamente." }
       end
     else
       redirect_to lots_path, status: :unprocessable_entity, notice: "No se ha podido validar el estado del lote."
