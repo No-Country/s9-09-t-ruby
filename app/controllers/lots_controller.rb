@@ -58,7 +58,7 @@ class LotsController < ApplicationController
   def trigger
     if @lot.send "#{params[:event]}!"
       respond_to do |format|
-        redirect_to lots_path, notice: "Estado del lote cambiada exitosamente."
+        format.html { redirect_to lots_path, notice: "Estado del lote cambiada exitosamente." }
       end
     else
       redirect_to lots_path, status: :unprocessable_entity, notice: "No se ha podido validar el estado del lote."
@@ -69,7 +69,7 @@ class LotsController < ApplicationController
     @todo = @lot.todos.find(params[:todo_id])
     if @todo.send "#{params[:event]}!"
       respond_to do |format|
-        redirect_to lot_path(@lot), notice: "Estado de la tarea cambiada exitosamente."
+        format.html { redirect_to lot_path(@lot), notice: "Estado de la tarea cambiada exitosamente." }
       end
     else
       redirect_to lot_path(@lot), status: :unprocessable_entity, notice: "No se ha podido validar el estado de la tarea."
